@@ -1,0 +1,72 @@
+﻿@model firma_budowlana.Models.zlecenia
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>zlecenia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.etap)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.etap)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postep)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postep)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.szacunkowy_koszt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.szacunkowy_koszt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.termin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.termin)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.kierownicy.id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.kierownicy.id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zgloszenia.opis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zgloszenia.opis)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

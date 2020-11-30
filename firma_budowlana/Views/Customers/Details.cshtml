@@ -1,0 +1,42 @@
+﻿@model firma_budowlana.Models.klienci
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>klienci</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwa_firmy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwa_firmy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dane_personalne.imie)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dane_personalne.imie)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

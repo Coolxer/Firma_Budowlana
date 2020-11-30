@@ -1,0 +1,42 @@
+﻿@model firma_budowlana.Models.maszyny
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>maszyny</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.sprawna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.sprawna)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.zajeta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.zajeta)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

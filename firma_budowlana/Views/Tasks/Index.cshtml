@@ -1,0 +1,63 @@
+﻿@model IEnumerable<firma_budowlana.Models.zlecenia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.etap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.postep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.szacunkowy_koszt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.termin)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.kierownicy.id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.zgloszenia.opis)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.etap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.postep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.szacunkowy_koszt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.termin)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.kierownicy.id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.zgloszenia.opis)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

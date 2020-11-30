@@ -1,0 +1,51 @@
+﻿@model IEnumerable<firma_budowlana.Models.pracownicy>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.wynagrodzenie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dane_personalne.imie)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.grupy_robocze.specjalizacja)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.maszyny.nazwa)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.wynagrodzenie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dane_personalne.imie)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.grupy_robocze.specjalizacja)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.maszyny.nazwa)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>
