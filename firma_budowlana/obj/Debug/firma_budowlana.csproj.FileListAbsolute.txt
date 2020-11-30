@@ -76,8 +76,8 @@ E:\firma_budowlana\firma_budowlana\bin\System.Web.WebPages.Razor.xml
 E:\firma_budowlana\firma_budowlana\bin\Newtonsoft.Json.xml
 E:\firma_budowlana\firma_budowlana\bin\Antlr3.Runtime.pdb
 E:\firma_budowlana\firma_budowlana\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csprojAssemblyReference.cache
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csproj.CoreCompileInputs.cache
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csproj.CopyComplete
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.dll
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.pdb
+E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csprojAssemblyReference.cache
