@@ -1,0 +1,799 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dane_personalne">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="imie" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nazwisko" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pesel" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="nr_telefonu" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="faktury">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nr_zlecenia" Type="int" Nullable="false" />
+          <Property Name="typ" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="rodzaj_platnosci" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="termin_platnosci" Type="date" Nullable="false" />
+          <Property Name="data_wystawienia" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="grupy_robocze">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kierownik" Type="int" Nullable="false" />
+          <Property Name="specjalizacja" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kierownicy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="wynagrodzenie" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="klienci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="nazwa_firmy" Type="varchar" MaxLength="50" />
+          <Property Name="nip" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="magazyny">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="adres" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="stan_wypelnienia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="maszyny">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="sprawna" Type="binary" MaxLength="1" Nullable="false" />
+          <Property Name="zajeta" Type="binary" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="materialy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nazwa" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ilosc" Type="float" Nullable="false" />
+          <Property Name="wartosc" Type="float" Nullable="false" />
+          <Property Name="zarezerwowany_dla" Type="int" Nullable="false" />
+          <Property Name="dostepny_w" Type="int" />
+        </EntityType>
+        <EntityType Name="pracownicy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="grupa_robocza" Type="int" Nullable="false" />
+          <Property Name="obslugiwana_maszyna" Type="int" />
+          <Property Name="wynagrodzenie" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zgloszenia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="autor_zgloszenia" Type="int" Nullable="false" />
+          <Property Name="opis" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="data_utworzenia" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="zlecenia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nr_zgloszenia" Type="int" Nullable="false" />
+          <Property Name="kierownik" Type="int" Nullable="false" />
+          <Property Name="etap" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="postep" Type="int" Nullable="false" />
+          <Property Name="szacunkowy_koszt" Type="float" Nullable="false" />
+          <Property Name="termin" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__faktury__nr_zlec__5070F446">
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
+          <End Role="faktury" Type="Self.faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zlecenia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="faktury">
+              <PropertyRef Name="nr_zlecenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__grupy_rob__kiero__48CFD27E">
+          <End Role="kierownicy" Type="Self.kierownicy" Multiplicity="1" />
+          <End Role="grupy_robocze" Type="Self.grupy_robocze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kierownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="grupy_robocze">
+              <PropertyRef Name="kierownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kierownicy__id__4222D4EF">
+          <End Role="dane_personalne" Type="Self.dane_personalne" Multiplicity="1" />
+          <End Role="kierownicy" Type="Self.kierownicy" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dane_personalne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kierownicy">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__klienci__id__38996AB5">
+          <End Role="dane_personalne" Type="Self.dane_personalne" Multiplicity="1" />
+          <End Role="klienci" Type="Self.klienci" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dane_personalne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="klienci">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__materialy__doste__5441852A">
+          <End Role="magazyny" Type="Self.magazyny" Multiplicity="0..1" />
+          <End Role="materialy" Type="Self.materialy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="magazyny">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="materialy">
+              <PropertyRef Name="dostepny_w" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__materialy__zarez__534D60F1">
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
+          <End Role="materialy" Type="Self.materialy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zlecenia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="materialy">
+              <PropertyRef Name="zarezerwowany_dla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pracownic__grupa__4CA06362">
+          <End Role="grupy_robocze" Type="Self.grupy_robocze" Multiplicity="1" />
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupy_robocze">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pracownicy">
+              <PropertyRef Name="grupa_robocza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pracownic__obslu__4D94879B">
+          <End Role="maszyny" Type="Self.maszyny" Multiplicity="0..1" />
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maszyny">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pracownicy">
+              <PropertyRef Name="obslugiwana_maszyna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pracownicy__id__4BAC3F29">
+          <End Role="dane_personalne" Type="Self.dane_personalne" Multiplicity="1" />
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dane_personalne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pracownicy">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zgloszeni__autor__3F466844">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="1" />
+          <End Role="zgloszenia" Type="Self.zgloszenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zgloszenia">
+              <PropertyRef Name="autor_zgloszenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zlecenia__kierow__45F365D3">
+          <End Role="kierownicy" Type="Self.kierownicy" Multiplicity="1" />
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kierownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zlecenia">
+              <PropertyRef Name="kierownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zlecenia__nr_zgl__44FF419A">
+          <End Role="zgloszenia" Type="Self.zgloszenia" Multiplicity="1" />
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zgloszenia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zlecenia">
+              <PropertyRef Name="nr_zgloszenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="dane_personalne" EntityType="Self.dane_personalne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="faktury" EntityType="Self.faktury" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grupy_robocze" EntityType="Self.grupy_robocze" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kierownicy" EntityType="Self.kierownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="klienci" EntityType="Self.klienci" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="magazyny" EntityType="Self.magazyny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="maszyny" EntityType="Self.maszyny" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="materialy" EntityType="Self.materialy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pracownicy" EntityType="Self.pracownicy" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zgloszenia" EntityType="Self.zgloszenia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="zlecenia" EntityType="Self.zlecenia" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__faktury__nr_zlec__5070F446" Association="Self.FK__faktury__nr_zlec__5070F446">
+            <End Role="zlecenia" EntitySet="zlecenia" />
+            <End Role="faktury" EntitySet="faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK__grupy_rob__kiero__48CFD27E" Association="Self.FK__grupy_rob__kiero__48CFD27E">
+            <End Role="kierownicy" EntitySet="kierownicy" />
+            <End Role="grupy_robocze" EntitySet="grupy_robocze" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kierownicy__id__4222D4EF" Association="Self.FK__kierownicy__id__4222D4EF">
+            <End Role="dane_personalne" EntitySet="dane_personalne" />
+            <End Role="kierownicy" EntitySet="kierownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__klienci__id__38996AB5" Association="Self.FK__klienci__id__38996AB5">
+            <End Role="dane_personalne" EntitySet="dane_personalne" />
+            <End Role="klienci" EntitySet="klienci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__materialy__doste__5441852A" Association="Self.FK__materialy__doste__5441852A">
+            <End Role="magazyny" EntitySet="magazyny" />
+            <End Role="materialy" EntitySet="materialy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__materialy__zarez__534D60F1" Association="Self.FK__materialy__zarez__534D60F1">
+            <End Role="zlecenia" EntitySet="zlecenia" />
+            <End Role="materialy" EntitySet="materialy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pracownic__grupa__4CA06362" Association="Self.FK__pracownic__grupa__4CA06362">
+            <End Role="grupy_robocze" EntitySet="grupy_robocze" />
+            <End Role="pracownicy" EntitySet="pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pracownic__obslu__4D94879B" Association="Self.FK__pracownic__obslu__4D94879B">
+            <End Role="maszyny" EntitySet="maszyny" />
+            <End Role="pracownicy" EntitySet="pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pracownicy__id__4BAC3F29" Association="Self.FK__pracownicy__id__4BAC3F29">
+            <End Role="dane_personalne" EntitySet="dane_personalne" />
+            <End Role="pracownicy" EntitySet="pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zgloszeni__autor__3F466844" Association="Self.FK__zgloszeni__autor__3F466844">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="zgloszenia" EntitySet="zgloszenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zlecenia__kierow__45F365D3" Association="Self.FK__zlecenia__kierow__45F365D3">
+            <End Role="kierownicy" EntitySet="kierownicy" />
+            <End Role="zlecenia" EntitySet="zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zlecenia__nr_zgl__44FF419A" Association="Self.FK__zlecenia__nr_zgl__44FF419A">
+            <End Role="zgloszenia" EntitySet="zgloszenia" />
+            <End Role="zlecenia" EntitySet="zlecenia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="dane_personalne">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="imie" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nazwisko" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pesel" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nr_telefonu" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="kierownicy" Relationship="Self.FK__kierownicy__id__4222D4EF" FromRole="dane_personalne" ToRole="kierownicy" />
+          <NavigationProperty Name="klienci" Relationship="Self.FK__klienci__id__38996AB5" FromRole="dane_personalne" ToRole="klienci" />
+          <NavigationProperty Name="pracownicy" Relationship="Self.FK__pracownicy__id__4BAC3F29" FromRole="dane_personalne" ToRole="pracownicy" />
+        </EntityType>
+        <EntityType Name="faktury">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nr_zlecenia" Type="Int32" Nullable="false" />
+          <Property Name="typ" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rodzaj_platnosci" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="termin_platnosci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="data_wystawienia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="zlecenia" Relationship="Self.FK__faktury__nr_zlec__5070F446" FromRole="faktury" ToRole="zlecenia" />
+        </EntityType>
+        <EntityType Name="grupy_robocze">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kierownik" Type="Int32" Nullable="false" />
+          <Property Name="specjalizacja" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="kierownicy" Relationship="Self.FK__grupy_rob__kiero__48CFD27E" FromRole="grupy_robocze" ToRole="kierownicy" />
+          <NavigationProperty Name="pracownicy" Relationship="Self.FK__pracownic__grupa__4CA06362" FromRole="grupy_robocze" ToRole="pracownicy" />
+        </EntityType>
+        <EntityType Name="kierownicy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="wynagrodzenie" Type="Double" Nullable="false" />
+          <NavigationProperty Name="dane_personalne" Relationship="Self.FK__kierownicy__id__4222D4EF" FromRole="kierownicy" ToRole="dane_personalne" />
+          <NavigationProperty Name="grupy_robocze" Relationship="Self.FK__grupy_rob__kiero__48CFD27E" FromRole="kierownicy" ToRole="grupy_robocze" />
+          <NavigationProperty Name="zlecenia" Relationship="Self.FK__zlecenia__kierow__45F365D3" FromRole="kierownicy" ToRole="zlecenia" />
+        </EntityType>
+        <EntityType Name="klienci">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="nazwa_firmy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="dane_personalne" Relationship="Self.FK__klienci__id__38996AB5" FromRole="klienci" ToRole="dane_personalne" />
+          <NavigationProperty Name="zgloszenia" Relationship="Self.FK__zgloszeni__autor__3F466844" FromRole="klienci" ToRole="zgloszenia" />
+        </EntityType>
+        <EntityType Name="magazyny">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="stan_wypelnienia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="materialy" Relationship="Self.FK__materialy__doste__5441852A" FromRole="magazyny" ToRole="materialy" />
+        </EntityType>
+        <EntityType Name="maszyny">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sprawna" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
+          <Property Name="zajeta" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
+          <NavigationProperty Name="pracownicy" Relationship="Self.FK__pracownic__obslu__4D94879B" FromRole="maszyny" ToRole="pracownicy" />
+        </EntityType>
+        <EntityType Name="materialy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nazwa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ilosc" Type="Double" Nullable="false" />
+          <Property Name="wartosc" Type="Double" Nullable="false" />
+          <Property Name="zarezerwowany_dla" Type="Int32" Nullable="false" />
+          <Property Name="dostepny_w" Type="Int32" />
+          <NavigationProperty Name="magazyny" Relationship="Self.FK__materialy__doste__5441852A" FromRole="materialy" ToRole="magazyny" />
+          <NavigationProperty Name="zlecenia" Relationship="Self.FK__materialy__zarez__534D60F1" FromRole="materialy" ToRole="zlecenia" />
+        </EntityType>
+        <EntityType Name="pracownicy">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="grupa_robocza" Type="Int32" Nullable="false" />
+          <Property Name="obslugiwana_maszyna" Type="Int32" />
+          <Property Name="wynagrodzenie" Type="Double" Nullable="false" />
+          <NavigationProperty Name="dane_personalne" Relationship="Self.FK__pracownicy__id__4BAC3F29" FromRole="pracownicy" ToRole="dane_personalne" />
+          <NavigationProperty Name="grupy_robocze" Relationship="Self.FK__pracownic__grupa__4CA06362" FromRole="pracownicy" ToRole="grupy_robocze" />
+          <NavigationProperty Name="maszyny" Relationship="Self.FK__pracownic__obslu__4D94879B" FromRole="pracownicy" ToRole="maszyny" />
+        </EntityType>
+        <EntityType Name="zgloszenia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="autor_zgloszenia" Type="Int32" Nullable="false" />
+          <Property Name="opis" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="data_utworzenia" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="klienci" Relationship="Self.FK__zgloszeni__autor__3F466844" FromRole="zgloszenia" ToRole="klienci" />
+          <NavigationProperty Name="zlecenia" Relationship="Self.FK__zlecenia__nr_zgl__44FF419A" FromRole="zgloszenia" ToRole="zlecenia" />
+        </EntityType>
+        <EntityType Name="zlecenia">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nr_zgloszenia" Type="Int32" Nullable="false" />
+          <Property Name="kierownik" Type="Int32" Nullable="false" />
+          <Property Name="etap" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postep" Type="Int32" Nullable="false" />
+          <Property Name="szacunkowy_koszt" Type="Double" Nullable="false" />
+          <Property Name="termin" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="faktury" Relationship="Self.FK__faktury__nr_zlec__5070F446" FromRole="zlecenia" ToRole="faktury" />
+          <NavigationProperty Name="kierownicy" Relationship="Self.FK__zlecenia__kierow__45F365D3" FromRole="zlecenia" ToRole="kierownicy" />
+          <NavigationProperty Name="materialy" Relationship="Self.FK__materialy__zarez__534D60F1" FromRole="zlecenia" ToRole="materialy" />
+          <NavigationProperty Name="zgloszenia" Relationship="Self.FK__zlecenia__nr_zgl__44FF419A" FromRole="zlecenia" ToRole="zgloszenia" />
+        </EntityType>
+        <Association Name="FK__kierownicy__id__4222D4EF">
+          <End Role="dane_personalne" Type="Self.dane_personalne" Multiplicity="1" />
+          <End Role="kierownicy" Type="Self.kierownicy" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dane_personalne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kierownicy">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__klienci__id__38996AB5">
+          <End Role="dane_personalne" Type="Self.dane_personalne" Multiplicity="1" />
+          <End Role="klienci" Type="Self.klienci" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dane_personalne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="klienci">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pracownicy__id__4BAC3F29">
+          <End Role="dane_personalne" Type="Self.dane_personalne" Multiplicity="1" />
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="dane_personalne">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pracownicy">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__faktury__nr_zlec__5070F446">
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
+          <End Role="faktury" Type="Self.faktury" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zlecenia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="faktury">
+              <PropertyRef Name="nr_zlecenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__grupy_rob__kiero__48CFD27E">
+          <End Role="kierownicy" Type="Self.kierownicy" Multiplicity="1" />
+          <End Role="grupy_robocze" Type="Self.grupy_robocze" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kierownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="grupy_robocze">
+              <PropertyRef Name="kierownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pracownic__grupa__4CA06362">
+          <End Role="grupy_robocze" Type="Self.grupy_robocze" Multiplicity="1" />
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupy_robocze">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pracownicy">
+              <PropertyRef Name="grupa_robocza" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zlecenia__kierow__45F365D3">
+          <End Role="kierownicy" Type="Self.kierownicy" Multiplicity="1" />
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kierownicy">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zlecenia">
+              <PropertyRef Name="kierownik" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zgloszeni__autor__3F466844">
+          <End Role="klienci" Type="Self.klienci" Multiplicity="1" />
+          <End Role="zgloszenia" Type="Self.zgloszenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="klienci">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zgloszenia">
+              <PropertyRef Name="autor_zgloszenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__materialy__doste__5441852A">
+          <End Role="magazyny" Type="Self.magazyny" Multiplicity="0..1" />
+          <End Role="materialy" Type="Self.materialy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="magazyny">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="materialy">
+              <PropertyRef Name="dostepny_w" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__pracownic__obslu__4D94879B">
+          <End Role="maszyny" Type="Self.maszyny" Multiplicity="0..1" />
+          <End Role="pracownicy" Type="Self.pracownicy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="maszyny">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="pracownicy">
+              <PropertyRef Name="obslugiwana_maszyna" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__materialy__zarez__534D60F1">
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
+          <End Role="materialy" Type="Self.materialy" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zlecenia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="materialy">
+              <PropertyRef Name="zarezerwowany_dla" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__zlecenia__nr_zgl__44FF419A">
+          <End Role="zgloszenia" Type="Self.zgloszenia" Multiplicity="1" />
+          <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="zgloszenia">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="zlecenia">
+              <PropertyRef Name="nr_zgloszenia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="dane_personalne" EntityType="Self.dane_personalne" />
+          <EntitySet Name="faktury" EntityType="Self.faktury" />
+          <EntitySet Name="grupy_robocze" EntityType="Self.grupy_robocze" />
+          <EntitySet Name="kierownicy" EntityType="Self.kierownicy" />
+          <EntitySet Name="klienci" EntityType="Self.klienci" />
+          <EntitySet Name="magazyny" EntityType="Self.magazyny" />
+          <EntitySet Name="maszyny" EntityType="Self.maszyny" />
+          <EntitySet Name="materialy" EntityType="Self.materialy" />
+          <EntitySet Name="pracownicy" EntityType="Self.pracownicy" />
+          <EntitySet Name="zgloszenia" EntityType="Self.zgloszenia" />
+          <EntitySet Name="zlecenia" EntityType="Self.zlecenia" />
+          <AssociationSet Name="FK__kierownicy__id__4222D4EF" Association="Self.FK__kierownicy__id__4222D4EF">
+            <End Role="dane_personalne" EntitySet="dane_personalne" />
+            <End Role="kierownicy" EntitySet="kierownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__klienci__id__38996AB5" Association="Self.FK__klienci__id__38996AB5">
+            <End Role="dane_personalne" EntitySet="dane_personalne" />
+            <End Role="klienci" EntitySet="klienci" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pracownicy__id__4BAC3F29" Association="Self.FK__pracownicy__id__4BAC3F29">
+            <End Role="dane_personalne" EntitySet="dane_personalne" />
+            <End Role="pracownicy" EntitySet="pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__faktury__nr_zlec__5070F446" Association="Self.FK__faktury__nr_zlec__5070F446">
+            <End Role="zlecenia" EntitySet="zlecenia" />
+            <End Role="faktury" EntitySet="faktury" />
+          </AssociationSet>
+          <AssociationSet Name="FK__grupy_rob__kiero__48CFD27E" Association="Self.FK__grupy_rob__kiero__48CFD27E">
+            <End Role="kierownicy" EntitySet="kierownicy" />
+            <End Role="grupy_robocze" EntitySet="grupy_robocze" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pracownic__grupa__4CA06362" Association="Self.FK__pracownic__grupa__4CA06362">
+            <End Role="grupy_robocze" EntitySet="grupy_robocze" />
+            <End Role="pracownicy" EntitySet="pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zlecenia__kierow__45F365D3" Association="Self.FK__zlecenia__kierow__45F365D3">
+            <End Role="kierownicy" EntitySet="kierownicy" />
+            <End Role="zlecenia" EntitySet="zlecenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zgloszeni__autor__3F466844" Association="Self.FK__zgloszeni__autor__3F466844">
+            <End Role="klienci" EntitySet="klienci" />
+            <End Role="zgloszenia" EntitySet="zgloszenia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__materialy__doste__5441852A" Association="Self.FK__materialy__doste__5441852A">
+            <End Role="magazyny" EntitySet="magazyny" />
+            <End Role="materialy" EntitySet="materialy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__pracownic__obslu__4D94879B" Association="Self.FK__pracownic__obslu__4D94879B">
+            <End Role="maszyny" EntitySet="maszyny" />
+            <End Role="pracownicy" EntitySet="pracownicy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__materialy__zarez__534D60F1" Association="Self.FK__materialy__zarez__534D60F1">
+            <End Role="zlecenia" EntitySet="zlecenia" />
+            <End Role="materialy" EntitySet="materialy" />
+          </AssociationSet>
+          <AssociationSet Name="FK__zlecenia__nr_zgl__44FF419A" Association="Self.FK__zlecenia__nr_zgl__44FF419A">
+            <End Role="zgloszenia" EntitySet="zgloszenia" />
+            <End Role="zlecenia" EntitySet="zlecenia" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="dane_personalne">
+            <EntityTypeMapping TypeName="Model.dane_personalne">
+              <MappingFragment StoreEntitySet="dane_personalne">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="imie" ColumnName="imie" />
+                <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+                <ScalarProperty Name="pesel" ColumnName="pesel" />
+                <ScalarProperty Name="nr_telefonu" ColumnName="nr_telefonu" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="faktury">
+            <EntityTypeMapping TypeName="Model.faktury">
+              <MappingFragment StoreEntitySet="faktury">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nr_zlecenia" ColumnName="nr_zlecenia" />
+                <ScalarProperty Name="typ" ColumnName="typ" />
+                <ScalarProperty Name="rodzaj_platnosci" ColumnName="rodzaj_platnosci" />
+                <ScalarProperty Name="termin_platnosci" ColumnName="termin_platnosci" />
+                <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grupy_robocze">
+            <EntityTypeMapping TypeName="Model.grupy_robocze">
+              <MappingFragment StoreEntitySet="grupy_robocze">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="kierownik" ColumnName="kierownik" />
+                <ScalarProperty Name="specjalizacja" ColumnName="specjalizacja" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kierownicy">
+            <EntityTypeMapping TypeName="Model.kierownicy">
+              <MappingFragment StoreEntitySet="kierownicy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="wynagrodzenie" ColumnName="wynagrodzenie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="klienci">
+            <EntityTypeMapping TypeName="Model.klienci">
+              <MappingFragment StoreEntitySet="klienci">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa_firmy" ColumnName="nazwa_firmy" />
+                <ScalarProperty Name="nip" ColumnName="nip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="magazyny">
+            <EntityTypeMapping TypeName="Model.magazyny">
+              <MappingFragment StoreEntitySet="magazyny">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="adres" ColumnName="adres" />
+                <ScalarProperty Name="stan_wypelnienia" ColumnName="stan_wypelnienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="maszyny">
+            <EntityTypeMapping TypeName="Model.maszyny">
+              <MappingFragment StoreEntitySet="maszyny">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="sprawna" ColumnName="sprawna" />
+                <ScalarProperty Name="zajeta" ColumnName="zajeta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="materialy">
+            <EntityTypeMapping TypeName="Model.materialy">
+              <MappingFragment StoreEntitySet="materialy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+                <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+                <ScalarProperty Name="wartosc" ColumnName="wartosc" />
+                <ScalarProperty Name="zarezerwowany_dla" ColumnName="zarezerwowany_dla" />
+                <ScalarProperty Name="dostepny_w" ColumnName="dostepny_w" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pracownicy">
+            <EntityTypeMapping TypeName="Model.pracownicy">
+              <MappingFragment StoreEntitySet="pracownicy">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="grupa_robocza" ColumnName="grupa_robocza" />
+                <ScalarProperty Name="obslugiwana_maszyna" ColumnName="obslugiwana_maszyna" />
+                <ScalarProperty Name="wynagrodzenie" ColumnName="wynagrodzenie" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zgloszenia">
+            <EntityTypeMapping TypeName="Model.zgloszenia">
+              <MappingFragment StoreEntitySet="zgloszenia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="autor_zgloszenia" ColumnName="autor_zgloszenia" />
+                <ScalarProperty Name="opis" ColumnName="opis" />
+                <ScalarProperty Name="data_utworzenia" ColumnName="data_utworzenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="zlecenia">
+            <EntityTypeMapping TypeName="Model.zlecenia">
+              <MappingFragment StoreEntitySet="zlecenia">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nr_zgloszenia" ColumnName="nr_zgloszenia" />
+                <ScalarProperty Name="kierownik" ColumnName="kierownik" />
+                <ScalarProperty Name="etap" ColumnName="etap" />
+                <ScalarProperty Name="postep" ColumnName="postep" />
+                <ScalarProperty Name="szacunkowy_koszt" ColumnName="szacunkowy_koszt" />
+                <ScalarProperty Name="termin" ColumnName="termin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
