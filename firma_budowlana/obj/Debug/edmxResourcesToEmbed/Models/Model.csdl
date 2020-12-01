@@ -19,12 +19,11 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nr_zlecenia" Type="Int32" Nullable="false" />
-    <Property Name="typ" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nr_umowy" Type="Int32" Nullable="false" />
     <Property Name="rodzaj_platnosci" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="termin_platnosci" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="data_wystawienia" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="zlecenia" Relationship="Self.FK__faktury__nr_zlec__5070F446" FromRole="faktury" ToRole="zlecenia" />
+    <NavigationProperty Name="umowy" Relationship="Self.FK__faktury__nr_umow__534D60F1" FromRole="faktury" ToRole="umowy" />
   </EntityType>
   <EntityType Name="grupy_robocze">
     <Key>
@@ -64,7 +63,7 @@
     <Property Name="nazwa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="adres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="stan_wypelnienia" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="materialy" Relationship="Self.FK__materialy__doste__5441852A" FromRole="magazyny" ToRole="materialy" />
+    <NavigationProperty Name="materialy" Relationship="Self.FK__materialy__doste__571DF1D5" FromRole="magazyny" ToRole="materialy" />
   </EntityType>
   <EntityType Name="maszyny">
     <Key>
@@ -72,8 +71,8 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nazwa" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="sprawna" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
-    <Property Name="zajeta" Type="Binary" MaxLength="1" FixedLength="true" Nullable="false" />
+    <Property Name="sprawna" Type="Boolean" Nullable="false" />
+    <Property Name="zajeta" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="pracownicy" Relationship="Self.FK__pracownic__obslu__4D94879B" FromRole="maszyny" ToRole="pracownicy" />
   </EntityType>
   <EntityType Name="materialy">
@@ -86,8 +85,8 @@
     <Property Name="wartosc" Type="Double" Nullable="false" />
     <Property Name="zarezerwowany_dla" Type="Int32" Nullable="false" />
     <Property Name="dostepny_w" Type="Int32" />
-    <NavigationProperty Name="magazyny" Relationship="Self.FK__materialy__doste__5441852A" FromRole="materialy" ToRole="magazyny" />
-    <NavigationProperty Name="zlecenia" Relationship="Self.FK__materialy__zarez__534D60F1" FromRole="materialy" ToRole="zlecenia" />
+    <NavigationProperty Name="magazyny" Relationship="Self.FK__materialy__doste__571DF1D5" FromRole="materialy" ToRole="magazyny" />
+    <NavigationProperty Name="zlecenia" Relationship="Self.FK__materialy__zarez__5629CD9C" FromRole="materialy" ToRole="zlecenia" />
   </EntityType>
   <EntityType Name="pracownicy">
     <Key>
@@ -100,6 +99,17 @@
     <NavigationProperty Name="dane_personalne" Relationship="Self.FK__pracownicy__id__4BAC3F29" FromRole="pracownicy" ToRole="dane_personalne" />
     <NavigationProperty Name="grupy_robocze" Relationship="Self.FK__pracownic__grupa__4CA06362" FromRole="pracownicy" ToRole="grupy_robocze" />
     <NavigationProperty Name="maszyny" Relationship="Self.FK__pracownic__obslu__4D94879B" FromRole="pracownicy" ToRole="maszyny" />
+  </EntityType>
+  <EntityType Name="umowy">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nr_zlecenia" Type="Int32" Nullable="false" />
+    <Property Name="typ" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="data_wystawienia" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="faktury" Relationship="Self.FK__faktury__nr_umow__534D60F1" FromRole="umowy" ToRole="faktury" />
+    <NavigationProperty Name="zlecenia" Relationship="Self.FK__umowy__nr_zlecen__5070F446" FromRole="umowy" ToRole="zlecenia" />
   </EntityType>
   <EntityType Name="zgloszenia">
     <Key>
@@ -123,9 +133,9 @@
     <Property Name="postep" Type="Int32" Nullable="false" />
     <Property Name="szacunkowy_koszt" Type="Double" Nullable="false" />
     <Property Name="termin" Type="DateTime" Nullable="false" Precision="0" />
-    <NavigationProperty Name="faktury" Relationship="Self.FK__faktury__nr_zlec__5070F446" FromRole="zlecenia" ToRole="faktury" />
     <NavigationProperty Name="kierownicy" Relationship="Self.FK__zlecenia__kierow__45F365D3" FromRole="zlecenia" ToRole="kierownicy" />
-    <NavigationProperty Name="materialy" Relationship="Self.FK__materialy__zarez__534D60F1" FromRole="zlecenia" ToRole="materialy" />
+    <NavigationProperty Name="materialy" Relationship="Self.FK__materialy__zarez__5629CD9C" FromRole="zlecenia" ToRole="materialy" />
+    <NavigationProperty Name="umowy" Relationship="Self.FK__umowy__nr_zlecen__5070F446" FromRole="zlecenia" ToRole="umowy" />
     <NavigationProperty Name="zgloszenia" Relationship="Self.FK__zlecenia__nr_zgl__44FF419A" FromRole="zlecenia" ToRole="zgloszenia" />
   </EntityType>
   <Association Name="FK__kierownicy__id__4222D4EF">
@@ -164,15 +174,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__faktury__nr_zlec__5070F446">
-    <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
+  <Association Name="FK__faktury__nr_umow__534D60F1">
+    <End Role="umowy" Type="Self.umowy" Multiplicity="1" />
     <End Role="faktury" Type="Self.faktury" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="zlecenia">
+      <Principal Role="umowy">
         <PropertyRef Name="id" />
       </Principal>
       <Dependent Role="faktury">
-        <PropertyRef Name="nr_zlecenia" />
+        <PropertyRef Name="nr_umowy" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -224,7 +234,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__materialy__doste__5441852A">
+  <Association Name="FK__materialy__doste__571DF1D5">
     <End Role="magazyny" Type="Self.magazyny" Multiplicity="0..1" />
     <End Role="materialy" Type="Self.materialy" Multiplicity="*" />
     <ReferentialConstraint>
@@ -248,7 +258,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__materialy__zarez__534D60F1">
+  <Association Name="FK__materialy__zarez__5629CD9C">
     <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
     <End Role="materialy" Type="Self.materialy" Multiplicity="*" />
     <ReferentialConstraint>
@@ -257,6 +267,18 @@
       </Principal>
       <Dependent Role="materialy">
         <PropertyRef Name="zarezerwowany_dla" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__umowy__nr_zlecen__5070F446">
+    <End Role="zlecenia" Type="Self.zlecenia" Multiplicity="1" />
+    <End Role="umowy" Type="Self.umowy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="zlecenia">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="umowy">
+        <PropertyRef Name="nr_zlecenia" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -282,6 +304,7 @@
     <EntitySet Name="maszyny" EntityType="Self.maszyny" />
     <EntitySet Name="materialy" EntityType="Self.materialy" />
     <EntitySet Name="pracownicy" EntityType="Self.pracownicy" />
+    <EntitySet Name="umowy" EntityType="Self.umowy" />
     <EntitySet Name="zgloszenia" EntityType="Self.zgloszenia" />
     <EntitySet Name="zlecenia" EntityType="Self.zlecenia" />
     <AssociationSet Name="FK__kierownicy__id__4222D4EF" Association="Self.FK__kierownicy__id__4222D4EF">
@@ -296,8 +319,8 @@
       <End Role="dane_personalne" EntitySet="dane_personalne" />
       <End Role="pracownicy" EntitySet="pracownicy" />
     </AssociationSet>
-    <AssociationSet Name="FK__faktury__nr_zlec__5070F446" Association="Self.FK__faktury__nr_zlec__5070F446">
-      <End Role="zlecenia" EntitySet="zlecenia" />
+    <AssociationSet Name="FK__faktury__nr_umow__534D60F1" Association="Self.FK__faktury__nr_umow__534D60F1">
+      <End Role="umowy" EntitySet="umowy" />
       <End Role="faktury" EntitySet="faktury" />
     </AssociationSet>
     <AssociationSet Name="FK__grupy_rob__kiero__48CFD27E" Association="Self.FK__grupy_rob__kiero__48CFD27E">
@@ -316,7 +339,7 @@
       <End Role="klienci" EntitySet="klienci" />
       <End Role="zgloszenia" EntitySet="zgloszenia" />
     </AssociationSet>
-    <AssociationSet Name="FK__materialy__doste__5441852A" Association="Self.FK__materialy__doste__5441852A">
+    <AssociationSet Name="FK__materialy__doste__571DF1D5" Association="Self.FK__materialy__doste__571DF1D5">
       <End Role="magazyny" EntitySet="magazyny" />
       <End Role="materialy" EntitySet="materialy" />
     </AssociationSet>
@@ -324,9 +347,13 @@
       <End Role="maszyny" EntitySet="maszyny" />
       <End Role="pracownicy" EntitySet="pracownicy" />
     </AssociationSet>
-    <AssociationSet Name="FK__materialy__zarez__534D60F1" Association="Self.FK__materialy__zarez__534D60F1">
+    <AssociationSet Name="FK__materialy__zarez__5629CD9C" Association="Self.FK__materialy__zarez__5629CD9C">
       <End Role="zlecenia" EntitySet="zlecenia" />
       <End Role="materialy" EntitySet="materialy" />
+    </AssociationSet>
+    <AssociationSet Name="FK__umowy__nr_zlecen__5070F446" Association="Self.FK__umowy__nr_zlecen__5070F446">
+      <End Role="zlecenia" EntitySet="zlecenia" />
+      <End Role="umowy" EntitySet="umowy" />
     </AssociationSet>
     <AssociationSet Name="FK__zlecenia__nr_zgl__44FF419A" Association="Self.FK__zlecenia__nr_zgl__44FF419A">
       <End Role="zgloszenia" EntitySet="zgloszenia" />

@@ -34,6 +34,7 @@ namespace firma_budowlana.Models
         public virtual DbSet<maszyny> maszyny { get; set; }
         public virtual DbSet<materialy> materialy { get; set; }
         public virtual DbSet<pracownicy> pracownicy { get; set; }
+        public virtual DbSet<umowy> umowy { get; set; }
         public virtual DbSet<zgloszenia> zgloszenia { get; set; }
         public virtual DbSet<zlecenia> zlecenia { get; set; }
     }

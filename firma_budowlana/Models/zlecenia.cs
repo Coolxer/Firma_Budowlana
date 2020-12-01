@@ -17,8 +17,8 @@ namespace firma_budowlana.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public zlecenia()
         {
-            this.faktury = new HashSet<faktury>();
             this.materialy = new HashSet<materialy>();
+            this.umowy = new HashSet<umowy>();
         }
     
         public int id { get; set; }
@@ -29,11 +29,11 @@ namespace firma_budowlana.Models
         public double szacunkowy_koszt { get; set; }
         public System.DateTime termin { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<faktury> faktury { get; set; }
         public virtual kierownicy kierownicy { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<materialy> materialy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<umowy> umowy { get; set; }
         public virtual zgloszenia zgloszenia { get; set; }
     }
 }

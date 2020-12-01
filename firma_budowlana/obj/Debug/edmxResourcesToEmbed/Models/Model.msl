@@ -17,8 +17,7 @@
       <EntityTypeMapping TypeName="Model.faktury">
         <MappingFragment StoreEntitySet="faktury">
           <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nr_zlecenia" ColumnName="nr_zlecenia" />
-          <ScalarProperty Name="typ" ColumnName="typ" />
+          <ScalarProperty Name="nr_umowy" ColumnName="nr_umowy" />
           <ScalarProperty Name="rodzaj_platnosci" ColumnName="rodzaj_platnosci" />
           <ScalarProperty Name="termin_platnosci" ColumnName="termin_platnosci" />
           <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
@@ -90,6 +89,16 @@
           <ScalarProperty Name="grupa_robocza" ColumnName="grupa_robocza" />
           <ScalarProperty Name="obslugiwana_maszyna" ColumnName="obslugiwana_maszyna" />
           <ScalarProperty Name="wynagrodzenie" ColumnName="wynagrodzenie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umowy">
+      <EntityTypeMapping TypeName="Model.umowy">
+        <MappingFragment StoreEntitySet="umowy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nr_zlecenia" ColumnName="nr_zlecenia" />
+          <ScalarProperty Name="typ" ColumnName="typ" />
+          <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -4,36 +4,32 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d42543c8e84646f3aae353647fd7b919" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="Model.dane_personalne" Width="1.5" PointX="4.75" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.faktury" Width="1.5" PointX="10" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.grupy_robocze" Width="1.5" PointX="5.625" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.kierownicy" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.klienci" Width="1.5" PointX="2" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.magazyny" Width="1.5" PointX="12.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.maszyny" Width="1.5" PointX="3.625" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.materialy" Width="1.5" PointX="12.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.pracownicy" Width="1.5" PointX="4.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.zgloszenia" Width="1.5" PointX="2" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.zlecenia" Width="1.5" PointX="10" PointY="4.5" IsExpanded="true" />
+      <Diagram DiagramId="cebc3c6d0ce64a5fad0d9d6efc564b0a" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.dane_personalne" Width="1.5" PointX="3.625" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.faktury" Width="1.5" PointX="11.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.grupy_robocze" Width="1.5" PointX="5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.kierownicy" Width="1.5" PointX="5.5" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.klienci" Width="1.5" PointX="1.125" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.magazyny" Width="1.5" PointX="10" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.maszyny" Width="1.5" PointX="2.625" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.materialy" Width="1.5" PointX="10.125" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.pracownicy" Width="1.5" PointX="3.625" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.umowy" Width="1.5" PointX="9" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.zgloszenia" Width="1.5" PointX="1" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.zlecenia" Width="1.5" PointX="7.75" PointY="7" IsExpanded="true" />
         <AssociationConnector Association="Model.FK__kierownicy__id__4222D4EF" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__klienci__id__38996AB5" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__pracownicy__id__4BAC3F29" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__faktury__nr_zlec__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__faktury__nr_umow__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__grupy_rob__kiero__48CFD27E" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__pracownic__grupa__4CA06362" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__zlecenia__kierow__45F365D3" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__zgloszeni__autor__3F466844" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__materialy__doste__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__materialy__doste__571DF1D5" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK__pracownic__obslu__4D94879B" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__materialy__zarez__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="Model.FK__zlecenia__nr_zgl__44FF419A" ManuallyRouted="true" >
-          <ConnectorPoint PointX="3.5" PointY="12.299988606770834" />
-          <ConnectorPoint PointX="8.8071510302474767" PointY="12.299988606770834" />
-          <ConnectorPoint PointX="8.8071510302474767" PointY="8.1422108601888" />
-          <ConnectorPoint PointX="10.09375" PointY="8.1422108601888" />
-          <ConnectorPoint PointX="10.09375" PointY="7.6340950520833317" />
-        </AssociationConnector>
+        <AssociationConnector Association="Model.FK__materialy__zarez__5629CD9C" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__umowy__nr_zlecen__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK__zlecenia__nr_zgl__44FF419A" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

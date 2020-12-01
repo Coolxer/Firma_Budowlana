@@ -12,14 +12,21 @@ namespace firma_budowlana.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class faktury
+    public partial class umowy
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public umowy()
+        {
+            this.faktury = new HashSet<faktury>();
+        }
+    
         public int id { get; set; }
-        public int nr_umowy { get; set; }
-        public string rodzaj_platnosci { get; set; }
-        public System.DateTime termin_platnosci { get; set; }
+        public int nr_zlecenia { get; set; }
+        public string typ { get; set; }
         public System.DateTime data_wystawienia { get; set; }
     
-        public virtual umowy umowy { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<faktury> faktury { get; set; }
+        public virtual zlecenia zlecenia { get; set; }
     }
 }

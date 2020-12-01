@@ -22,8 +22,8 @@ namespace firma_budowlana.Models
     
         public int id { get; set; }
         public string nazwa { get; set; }
-        public byte[] sprawna { get; set; }
-        public byte[] zajeta { get; set; }
+        public bool sprawna { get; set; }
+        public bool zajeta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pracownicy> pracownicy { get; set; }
