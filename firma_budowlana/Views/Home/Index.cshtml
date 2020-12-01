@@ -2,16 +2,30 @@
     ViewBag.Title = "Strona główna";
 }
 
-<div class="jumbotron">
-    <h1>Firma Budowlana</h1>
-    <p class="lead">Zajmujemy się czymś.</p>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Zbuduj dom z nami</h2>
-        <p>
-            Oferujemy
-        </p>
+<div class="row home-box">
+    <div class="col-xl-7 col-lg-7 col-md-9 col-sm-10 col-11">
+        <div class="row home-content">
+            <div class="col-xl-3 col-sm-11 home-icons">
+                <div class="row">
+                    <i class="far fa-building col-xl-12 col-6 icon"></i>
+                    <i class="fas fa-hammer fa-flip-horizontal col-xl-12 col-6 icon"></i>
+                </div>
+            </div>
+            <div class="jumbotron col-xl-9 col-sm-12">
+                <h1 class="display-5 jumb-header">Firma Budowlana</h1>
+                <hr class="my-4">
+                <p class="lead"><i class="fas fa-check"></i>Realizujemy usługi najwyższej jakości. Z nami zbudujesz swój dom i wyremontujesz swoje mieszkanie!</p>
+                <p class="lead"><i class="fas fa-check"></i>Zaprojektujemy twój wymarzony dom lub wykonamy gotowy projekt!</p>
+                <p class="lead"><i class="fas fa-check"></i>Zapewniamy materiały najwyższej jakości w konkurencyjnej cenie!</p>
+                <p class="lead"><i class="fas fa-check"></i>Mamy wykwalifikowanych pracowników na każdym stanowisku!</p>
+                <p class="lead"><i class="fas fa-check"></i>Dzięki odpowiedniemu zarządzaniu realizujemy wiele projektów!</p>
+                <hr class="my-4">
+                <p class="lead dont-wait">Chcesz jeszcze więcej dowiedzieć się o naszej działalności?</p>
+                <a class="btn btn-primary btn-lg btn-block" href="/Home/About" role="button">O firmie</a>
+                <hr class="my-4">
+                <p class="lead dont-wait">Chcesz zadać pytanie?</p>
+                <a class="btn btn-primary btn-lg btn-block" href="/Home/Contact" role="button">Kontakt</a>
+            </div>
+        </div>
     </div>
 </div>

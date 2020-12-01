@@ -23,14 +23,16 @@ namespace firma_budowlana
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"
+                      "~/Content/bootstrap.css"
                       ));
 
             bundles.Add(new StyleBundle("~/css/css").Include(
                       "~/css/style.css",
                       "~/css/menu.css",
-                      "~/css/footer.css"
+                      "~/css/footer.css",
+                      "~/css/home.css",
+                      "~/css/contact.css",
+                      "~/css/about.css"
                       ));
         }
     }

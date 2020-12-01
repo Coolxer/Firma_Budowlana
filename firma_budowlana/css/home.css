@@ -1,0 +1,65 @@
+﻿.home-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 50px 0 50px 0;
+}
+
+.home-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 20px;
+    background-color: #1a1a1a;
+    box-shadow: 1px 1px 2px 2px #0d0d0d;
+}
+
+.home-icons {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2em;
+    background-color: #0099ff;
+}
+
+.icon {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    font-size: 6rem;
+    padding: 10px;
+    color: #262626;
+}
+
+.jumbotron {
+    background-color: #1a1a1a;
+    margin: 0;
+    padding: 20px;
+}
+
+.jumb-header {
+    text-align: center;
+}
+
+hr {
+    background-color: #8c8c8c;
+}
+
+.fa-check {
+    margin-right: 10px;
+    color: #0099ff;
+}
+
+.lead {
+    padding: 5px;
+    text-align: center;
+
+    font-size: 1rem;
+    color: #8c8c8c;
+}
+
+.dont-wait {
+    color: #0099ff;
+    text-align: center;
+
+    margin-bottom: 10px;
+}

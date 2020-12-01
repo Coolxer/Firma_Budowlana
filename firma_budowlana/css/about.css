@@ -1,0 +1,53 @@
+﻿.about-box {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.about-content {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.about-header {
+    margin: 0;
+    padding: 10px;
+}
+
+.about-line {
+    width: 80%;
+    background-color: #8c8c8c;
+    margin: 5px !important;
+}
+
+.about-info {
+    padding: 10px;
+}
+
+.about-stats {
+    margin-bottom: 10px;
+}
+
+.about-stat {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1.5rem;
+    background-color: #1a1a1a;
+    padding: 20px;
+    box-shadow: 1px 1px 2px 2px #0d0d0d;
+}
+
+.about-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7rem;
+}
+
+.about-value {
+    color: #0099ff;
+    font-size: 3rem;
+}
