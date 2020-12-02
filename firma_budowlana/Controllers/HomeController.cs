@@ -37,5 +37,12 @@ namespace firma_budowlana.Controllers
 
             return View();
         }
+
+        public ActionResult Tables()
+        {
+            ViewBag.Message = "Tabele";
+
+            return View();
+        }
     }
 }

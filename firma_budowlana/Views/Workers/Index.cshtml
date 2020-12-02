@@ -1,51 +1,98 @@
 ﻿@model IEnumerable<firma_budowlana.Models.pracownicy>
 
-@{
-    ViewBag.Title = "Index";
-}
+<div>
+    <div class="row">
+        <h2 class="col-12 table-header">Tabela : <span class="table-name">pracownicy</span></h2>
+    </div>
 
-<h2>Index</h2>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.wynagrodzenie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dane_personalne.imie)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.grupy_robocze.specjalizacja)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.maszyny.nazwa)
-        </th>
-        <th></th>
-    </tr>
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        nr
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.imie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.nazwisko)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.pesel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.nr_telefonu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.wynagrodzenie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.grupy_robocze.specjalizacja)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.maszyny.nazwa)
+                    </th>
+                    <th class="table-operation">
+                        Edytuj
+                    </th>
+                    <th class="table-operation">
+                        Usuń
+                    </th>
+                </tr>
+            </thead>
+            @{ int row = 0; }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.wynagrodzenie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dane_personalne.imie)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.grupy_robocze.specjalizacja)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.maszyny.nazwa)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td> @(row += 1)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.pesel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.nr_telefonu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.wynagrodzenie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.grupy_robocze.specjalizacja)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.maszyny.nazwa)
+                    </td>
+                    <td class="table-operation">
+                        <a href="Workers/Edit/@item.id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="table-operation">
+                        <a href="Workers/Delete/@item.id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary btn-lg btn-block" href="Workers/Create">Dodaj pracownika</a>
+</div>

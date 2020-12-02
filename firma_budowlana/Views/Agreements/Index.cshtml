@@ -1,8 +1,8 @@
-﻿@model IEnumerable<firma_budowlana.Models.zgloszenia>
+﻿@model IEnumerable<firma_budowlana.Models.umowy>
 
 <div>
     <div class="row">
-        <h2 class="col-12 table-header">Tabela : <span class="table-name">zgłoszenia</span></h2>
+        <h2 class="col-12 table-header">Tabela : <span class="table-name">umowy</span></h2>
     </div>
 
     <div class="row">
@@ -17,13 +17,13 @@
                         nr
                     </th>
                     <th>
-                        Autor
+                        @Html.DisplayNameFor(model => model.typ)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.opis)
+                        @Html.DisplayNameFor(model => model.data_wystawienia)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.data_utworzenia)
+                        Klient
                     </th>
                     <th class="table-operation">
                         Edytuj
@@ -41,22 +41,21 @@
                     <tr>
                         <td> @(row += 1)</td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.klienci.dane_personalne.imie)
-                            @Html.DisplayFor(modelItem => item.klienci.dane_personalne.nazwisko)
+                            @Html.DisplayFor(modelItem => item.typ)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.opis)
+                            @Html.DisplayFor(modelItem => item.data_wystawienia)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.data_utworzenia)
+                            @Html.DisplayFor(modelItem => item.zlecenia.zgloszenia.autor_zgloszenia)
                         </td>
                         <td class="table-operation">
-                            <a href="Notifications/Edit/@item.id">
+                            <a href="Agreements/Edit/@item.id">
                                 <i class="fas fa-edit"></i>
                             </a>
                         </td>
                         <td class="table-operation">
-                            <a href="Notifications/Delete/@item.id">
+                            <a href="Agreements/Delete/@item.id">
                                 <i class="fas fa-trash-alt"></i>
                             </a>
                         </td>
@@ -65,5 +64,5 @@
             </tbody>
         </table>
     </div>
-    <a class="btn btn-primary btn-lg btn-block" href="Notifications/Create">Dodaj zgłoszenie</a>
+    <a class="btn btn-primary btn-lg btn-block" href="Agreements/Create">Dodaj umowę</a>
 </div>

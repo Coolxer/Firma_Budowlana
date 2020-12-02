@@ -32,7 +32,9 @@ namespace firma_budowlana
                       "~/css/footer.css",
                       "~/css/home.css",
                       "~/css/contact.css",
-                      "~/css/about.css"
+                      "~/css/about.css",
+                      "~/css/table.css",
+                      "~/css/cards.css"
                       ));
         }
     }
