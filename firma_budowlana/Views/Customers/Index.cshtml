@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<firma_budowlana.Models.klienci>
 
-<div>
     <div class="row">
         <h2 class="col-12 table-header">Tabela : <span class="table-name">klienci</span></h2>
     </div>
@@ -50,43 +49,43 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td> @(row += 1)</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dane_personalne.imie)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dane_personalne.nazwisko)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dane_personalne.pesel)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dane_personalne.nr_telefonu)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.dane_personalne.email)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nazwa_firmy)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nip)
-                        </td>
-                        <td class="table-operation">
-                            <a href="Customers/Edit/@item.id">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                        <td class="table-operation">
-                            <a href="Customers/Delete/@item.id">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="index"> @(row += 1)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.pesel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.nr_telefonu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.dane_personalne.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nazwa_firmy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nip)
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Customers/Edit/@item.id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Customers/Delete/@item.id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
-    <a class="btn btn-primary btn-lg btn-block" href="Customers/Create">Dodaj klienta</a>
-</div>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Customers/Create">Dodaj klienta</a>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>

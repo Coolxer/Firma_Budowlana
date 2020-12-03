@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<firma_budowlana.Models.magazyny>
 
-<div>
+
     <div class="row">
         <h2 class="col-12 table-header">Tabela : <span class="table-name">magazyny</span></h2>
     </div>
@@ -33,36 +33,37 @@
                     </th>
                 </tr>
             </thead>
-            @{ int row = 0; }
+            @{
+            int row = 0; }
 
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td> @(row += 1)</td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nazwa)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.adres)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.stan_wypelnienia)
-                        </td>
-                        <td class="table-operation">
-                            <a href="Warehouses/Edit/@item.id">
-                                <i class="fas fa-edit"></i>
-                            </a>
-                        </td>
-                        <td class="table-operation">
-                            <a href="Warehouses/Delete/@item.id">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td class="index"> @(row += 1)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.stan_wypelnienia)
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Warehouses/Edit/@item.id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Warehouses/Delete/@item.id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
-    <a class="btn btn-primary btn-lg btn-block" href="Warehouses/Create">Dodaj magazyn</a>
-</div>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Warehouses/Create">Dodaj magazyn</a>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>

@@ -34,7 +34,8 @@ namespace firma_budowlana
                       "~/css/contact.css",
                       "~/css/about.css",
                       "~/css/table.css",
-                      "~/css/cards.css"
+                      "~/css/cards.css",
+                      "~/css/operation.css"
                       ));
         }
     }

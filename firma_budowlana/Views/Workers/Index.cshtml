@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<firma_budowlana.Models.pracownicy>
 
-<div>
+
     <div class="row">
         <h2 class="col-12 table-header">Tabela : <span class="table-name">pracownicy</span></h2>
     </div>
@@ -48,13 +48,14 @@
                     </th>
                 </tr>
             </thead>
-            @{ int row = 0; }
+            @{
+            int row = 0; }
 
             <tbody>
                 @foreach (var item in Model)
                 {
                 <tr>
-                    <td> @(row += 1)</td>
+                    <td class="index"> @(row += 1)</td>
                     <td>
                         @Html.DisplayFor(modelItem => item.dane_personalne.imie)
                     </td>
@@ -80,12 +81,12 @@
                         @Html.DisplayFor(modelItem => item.maszyny.nazwa)
                     </td>
                     <td class="table-operation">
-                        <a href="Workers/Edit/@item.id">
+                        <a href="~/Workers/Edit/@item.id">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
                     <td class="table-operation">
-                        <a href="Workers/Delete/@item.id">
+                        <a href="~/Workers/Delete/@item.id">
                             <i class="fas fa-trash-alt"></i>
                         </a>
                     </td>
@@ -94,5 +95,5 @@
             </tbody>
         </table>
     </div>
-    <a class="btn btn-primary btn-lg btn-block" href="Workers/Create">Dodaj pracownika</a>
-</div>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Workers/Create">Dodaj pracownika</a>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>
