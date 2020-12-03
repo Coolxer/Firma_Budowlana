@@ -16,19 +16,19 @@
                         nr
                     </th>
                     <th>
-                        Autor
+                        autor
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.opis)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.data_utworzenia)
+                        data utworzenia
                     </th>
                     <th class="table-operation">
-                        Edytuj
+                        edytuj
                     </th>
                     <th class="table-operation">
-                        Usuń
+                        usuń
                     </th>
                 </tr>
             </thead>
@@ -49,7 +49,7 @@
                         @Html.DisplayFor(modelItem => item.opis)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.data_utworzenia)
+                        @Convert.ToDateTime(item.data_utworzenia).ToString("dd/MM/yyyy")
                     </td>
                     <td class="table-operation">
                         <a href="~/Notifications/Edit/@item.id">

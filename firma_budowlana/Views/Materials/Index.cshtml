@@ -20,22 +20,22 @@
                         @Html.DisplayNameFor(model => model.nazwa)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.ilosc)
+                        ilość
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.wartosc)
+                        wartość [zł]
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.zarezerwowany_dla)
+                        nr zlecenia
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.dostepny_w)
+                        magazyn
                     </th>
                     <th class="table-operation">
-                        Edytuj
+                        edytuj
                     </th>
                     <th class="table-operation">
-                        Usuń
+                        usuń
                     </th>
                 </tr>
             </thead>
@@ -54,10 +54,13 @@
                         @Html.DisplayFor(modelItem => item.ilosc)
                     </td>
                     <td>
+                        @Html.DisplayFor(modelItem => item.wartosc)
+                    </td>
+                    <td>
                         @Html.DisplayFor(modelItem => item.zarezerwowany_dla)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.dostepny_w)
+                        @Html.DisplayFor(modelItem => item.magazyny.nazwa)
                     </td>
                     <td class="table-operation">
                         <a href="~/Materials/Edit/@item.id">

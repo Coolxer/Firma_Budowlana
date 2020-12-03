@@ -17,22 +17,25 @@
                         nr
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.nr_umowy)
+                        nr umowy
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.rodzaj_platnosci)
+                        rodzaj płatnosci
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.termin_platnosci)
+                        wartość [zł]
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.data_wystawienia)
+                        termin płatnosci
+                    </th>
+                    <th>
+                        data wystawienia
                     </th>
                     <th class="table-operation">
-                        Edytuj
+                        edytuj
                     </th>
                     <th class="table-operation">
-                        Usuń
+                        usuń
                     </th>
                 </tr>
             </thead>
@@ -51,10 +54,13 @@
                         @Html.DisplayFor(modelItem => item.rodzaj_platnosci)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.termin_platnosci)
+                        @Html.DisplayFor(modelItem => item.wartosc)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.data_wystawienia)
+                        @Convert.ToDateTime(item.termin_platnosci).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.data_wystawienia).ToString("dd/MM/yyyy")
                     </td>
                     <td class="table-operation">
                         <a href="~/Invoices/Edit/@item.id">

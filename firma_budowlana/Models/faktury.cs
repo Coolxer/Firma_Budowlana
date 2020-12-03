@@ -19,6 +19,7 @@ namespace firma_budowlana.Models
         public string rodzaj_platnosci { get; set; }
         public System.DateTime termin_platnosci { get; set; }
         public System.DateTime data_wystawienia { get; set; }
+        public double wartosc { get; set; }
     
         public virtual umowy umowy { get; set; }
     }

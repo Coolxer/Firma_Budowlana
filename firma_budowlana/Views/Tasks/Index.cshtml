@@ -20,22 +20,22 @@
                         @Html.DisplayNameFor(model => model.etap)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.postep)
+                        postęp [%]
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.szacunkowy_koszt)
+                        szacunkowy koszt [zł]
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.termin)
                     </th>
                     <th>
-                        Kierownik
+                        kierownik
                     </th>
                     <th class="table-operation">
-                        Edytuj
+                        edytuj
                     </th>
                     <th class="table-operation">
-                        Usuń
+                        usuń
                     </th>
                 </tr>
             </thead>
@@ -57,7 +57,7 @@
                         @Html.DisplayFor(modelItem => item.szacunkowy_koszt)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.termin)
+                        @Convert.ToDateTime(item.termin).ToString("dd/MM/yyyy")
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.kierownicy.dane_personalne.imie)

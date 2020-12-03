@@ -20,16 +20,16 @@
                         @Html.DisplayNameFor(model => model.typ)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.data_wystawienia)
+                        data wystawienia
                     </th>
                     <th>
-                        Klient
+                        klient
                     </th>
                     <th class="table-operation">
-                        Edytuj
+                        edytuj
                     </th>
                     <th class="table-operation">
-                        Usuń
+                        usuń
                     </th>
                 </tr>
             </thead>
@@ -44,10 +44,11 @@
                         @Html.DisplayFor(modelItem => item.typ)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.data_wystawienia)
+                        @Convert.ToDateTime(item.data_wystawienia).ToString("dd/MM/yyyy")
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.zlecenia.zgloszenia.autor_zgloszenia)
+                        @Html.DisplayFor(modelItem => item.zlecenia.zgloszenia.klienci.dane_personalne.imie)
+                        @Html.DisplayFor(modelItem => item.zlecenia.zgloszenia.klienci.dane_personalne.nazwisko)
                     </td>
                     <td class="table-operation">
                         <a href="~/Agreements/Edit/@item.id">

@@ -24,6 +24,7 @@
     <Property Name="termin_platnosci" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="data_wystawienia" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="umowy" Relationship="Self.FK__faktury__nr_umow__534D60F1" FromRole="faktury" ToRole="umowy" />
+    <Property Name="wartosc" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="grupy_robocze">
     <Key>

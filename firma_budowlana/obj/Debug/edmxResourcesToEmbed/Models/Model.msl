@@ -16,6 +16,7 @@
     <EntitySetMapping Name="faktury">
       <EntityTypeMapping TypeName="Model.faktury">
         <MappingFragment StoreEntitySet="faktury">
+          <ScalarProperty Name="wartosc" ColumnName="wartosc" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="nr_umowy" ColumnName="nr_umowy" />
           <ScalarProperty Name="rodzaj_platnosci" ColumnName="rodzaj_platnosci" />

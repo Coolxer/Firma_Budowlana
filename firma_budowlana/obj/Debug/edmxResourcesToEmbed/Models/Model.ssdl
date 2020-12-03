@@ -18,6 +18,7 @@
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nr_umowy" Type="int" Nullable="false" />
     <Property Name="rodzaj_platnosci" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="wartosc" Type="float" Nullable="false" />
     <Property Name="termin_platnosci" Type="date" Nullable="false" />
     <Property Name="data_wystawienia" Type="date" Nullable="false" />
   </EntityType>

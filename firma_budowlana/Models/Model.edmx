@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="dane_personalne">
           <Key>
             <PropertyRef Name="id" />
@@ -23,6 +23,7 @@
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nr_umowy" Type="int" Nullable="false" />
           <Property Name="rodzaj_platnosci" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="wartosc" Type="float" Nullable="false" />
           <Property Name="termin_platnosci" Type="date" Nullable="false" />
           <Property Name="data_wystawienia" Type="date" Nullable="false" />
         </EntityType>
@@ -339,8 +340,7 @@
             <End Role="zlecenia" EntitySet="zlecenia" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -368,6 +368,7 @@
           <Property Name="termin_platnosci" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="data_wystawienia" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="umowy" Relationship="Self.FK__faktury__nr_umow__534D60F1" FromRole="faktury" ToRole="umowy" />
+          <Property Name="wartosc" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="grupy_robocze">
           <Key>
@@ -725,6 +726,7 @@
           <EntitySetMapping Name="faktury">
             <EntityTypeMapping TypeName="Model.faktury">
               <MappingFragment StoreEntitySet="faktury">
+                <ScalarProperty Name="wartosc" ColumnName="wartosc" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nr_umowy" ColumnName="nr_umowy" />
                 <ScalarProperty Name="rodzaj_platnosci" ColumnName="rodzaj_platnosci" />

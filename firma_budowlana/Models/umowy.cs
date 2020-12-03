@@ -23,6 +23,7 @@ namespace firma_budowlana.Models
         public int id { get; set; }
         public int nr_zlecenia { get; set; }
         public string typ { get; set; }
+
         public System.DateTime data_wystawienia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
