@@ -64,3 +64,12 @@ th, td {
     justify-content: left;
     align-items: center;
 }
+
+.optional-label {
+    color: #8c8c8c;
+}
+
+.optional-control {
+    background-color: #8c8c8c;
+    border-color: #8c8c8c;
+}
