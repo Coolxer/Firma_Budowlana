@@ -48,7 +48,7 @@ namespace firma_budowlana.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nazwa_firmy,nip")] klienci klienci)
+        public ActionResult Create([Bind(Include = "id,nazwa_firmy,nip,dane_personalne")] klienci klienci)
         {
             if (ModelState.IsValid)
             {
