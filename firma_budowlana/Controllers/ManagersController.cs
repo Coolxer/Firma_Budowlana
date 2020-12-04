@@ -33,7 +33,7 @@ namespace firma_budowlana.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,wynagrodzenie")] kierownicy kierownicy)
+        public ActionResult Create([Bind(Include = "id,wynagrodzenie,dane_personalne")] kierownicy kierownicy)
         {
             if (ModelState.IsValid)
             {
@@ -101,6 +101,7 @@ namespace firma_budowlana.Controllers
         {
             kierownicy kierownicy = db.kierownicy.Find(id);
             db.kierownicy.Remove(kierownicy);
+            db.dane_personalne.Remove(db.dane_personalne.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -101,6 +101,7 @@ namespace firma_budowlana.Controllers
         {
             klienci klienci = db.klienci.Find(id);
             db.klienci.Remove(klienci);
+            db.dane_personalne.Remove(db.dane_personalne.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index");
         }

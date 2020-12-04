@@ -1,72 +1,83 @@
 ﻿@model firma_budowlana.Models.zlecenia
 
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>zlecenia</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.etap)
-        </dt>
+    <div class="row">
+        <h2 class="col-12 table-header">Usuwanie zlecenia</h2>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.etap)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.postep)
-        </dt>
+    <div class="row">
+        <h6 class="col-12 table-header" style="color: red">UWAGA: Jeśli została już sporządzona umowa i zarezerwowane materiały, to najpierw należy je usunąć . W przeciwnym wypadku system zwróci błąd.</h6>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.postep)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.szacunkowy_koszt)
-        </dt>
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.etap)
+                    </th>
+                    <th>
+                        postęp [%]
+                    </th>
+                    <th>
+                        szacunkowy koszt [zł]
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.termin)
+                    </th>
+                    <th>
+                        kierownik
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.etap)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.postep)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.szacunkowy_koszt)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(Model.termin).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.kierownicy.dane_personalne.imie)
+                        @Html.DisplayFor(model => model.kierownicy.dane_personalne.nazwisko)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.szacunkowy_koszt)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.termin)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.termin)
-        </dd>
+    <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć to zlecenie?</h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.kierownicy.id)
-        </dt>
+    <div class="col-5 operation-question">
+        <div class="row operation-answer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
 
-        <dd>
-            @Html.DisplayFor(model => model.kierownicy.id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.zgloszenia.opis)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.zgloszenia.opis)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <a class="col-4 btn btn-primary btn-lg" href="~/Tasks/Index">Nie</a>
+            }
         </div>
-    }
+    </div>
 </div>
+

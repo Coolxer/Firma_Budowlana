@@ -1,40 +1,88 @@
 ﻿@model firma_budowlana.Models.kierownicy
 
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>kierownicy</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.wynagrodzenie)
-        </dt>
+    <div class="row">
+        <h2 class="col-12 table-header">Usuwanie kierownika</h2>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.wynagrodzenie)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.dane_personalne.imie)
-        </dt>
+    <div class="row">
+        <h6 class="col-12 table-header" style="color: red">UWAGA: Jeśli kierownik dowodzi grupą roboczą i/lub prowadzi zlecenie, to najpierw należy je usunąć. W przeciwnym wypadku system zwróci błąd.</h6>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.dane_personalne.imie)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-    </dl>
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.imie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.nazwisko)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.pesel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.nr_telefonu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.wynagrodzenie) [zł]
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.pesel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.nr_telefonu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.wynagrodzenie)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+
+    <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć tego kierownika?</h4>
+
+    <div class="col-5 operation-question">
+        <div class="row operation-answer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
+
+                <a class="col-4 btn btn-primary btn-lg" href="~/Managers/Index">Nie</a>
+            }
         </div>
-    }
+    </div>
 </div>
+

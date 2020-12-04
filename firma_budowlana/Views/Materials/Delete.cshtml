@@ -1,64 +1,74 @@
 ﻿@model firma_budowlana.Models.materialy
 
-@{
-    ViewBag.Title = "Delete";
-}
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>materialy</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nazwa)
-        </dt>
+    <div class="row">
+        <h2 class="col-12 table-header">Usuwanie materiału</h2>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.nazwa)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ilosc)
-        </dt>
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nazwa)
+                    </th>
+                    <th>
+                        ilość
+                    </th>
+                    <th>
+                        wartość [zł]
+                    </th>
+                    <th>
+                        nr zlecenia
+                    </th>
+                    <th>
+                        magazyn
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ilosc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.wartosc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.zarezerwowany_dla)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.magazyny.nazwa)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ilosc)
-        </dd>
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.wartosc)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.wartosc)
-        </dd>
+    <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć ten materiał?</h4>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.magazyny.nazwa)
-        </dt>
+    <div class="col-5 operation-question">
+        <div class="row operation-answer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
 
-        <dd>
-            @Html.DisplayFor(model => model.magazyny.nazwa)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.zlecenia.etap)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.zlecenia.etap)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <a class="col-4 btn btn-primary btn-lg" href="~/Materials/Index">Nie</a>
+            }
         </div>
-    }
+    </div>
 </div>
+

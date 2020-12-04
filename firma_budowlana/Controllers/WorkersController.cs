@@ -35,7 +35,7 @@ namespace firma_budowlana.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,grupa_robocza,obslugiwana_maszyna,wynagrodzenie")] pracownicy pracownicy)
+        public ActionResult Create([Bind(Include = "id,grupa_robocza,obslugiwana_maszyna,wynagrodzenie,dane_personalne")] pracownicy pracownicy)
         {
             if (ModelState.IsValid)
             {
@@ -109,6 +109,7 @@ namespace firma_budowlana.Controllers
         {
             pracownicy pracownicy = db.pracownicy.Find(id);
             db.pracownicy.Remove(pracownicy);
+            db.dane_personalne.Remove(db.dane_personalne.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index");
         }
