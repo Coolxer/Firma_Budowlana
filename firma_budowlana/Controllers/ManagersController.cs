@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(kierownicy.ToList());
         }
 
-        // GET: Managers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            kierownicy kierownicy = db.kierownicy.Find(id);
-            if (kierownicy == null)
-            {
-                return HttpNotFound();
-            }
-            return View(kierownicy);
-        }
-
         // GET: Managers/Create
         public ActionResult Create()
         {

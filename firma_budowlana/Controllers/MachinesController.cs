@@ -19,22 +19,7 @@ namespace firma_budowlana.Controllers
         {
             return View(db.maszyny.ToList());
         }
-
-        // GET: Machines/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            maszyny maszyny = db.maszyny.Find(id);
-            if (maszyny == null)
-            {
-                return HttpNotFound();
-            }
-            return View(maszyny);
-        }
-
+        
         // GET: Machines/Create
         public ActionResult Create()
         {

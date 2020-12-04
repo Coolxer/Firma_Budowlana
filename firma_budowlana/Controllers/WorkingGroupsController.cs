@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(grupy_robocze.ToList());
         }
 
-        // GET: WorkingGroups/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            grupy_robocze grupy_robocze = db.grupy_robocze.Find(id);
-            if (grupy_robocze == null)
-            {
-                return HttpNotFound();
-            }
-            return View(grupy_robocze);
-        }
-
         // GET: WorkingGroups/Create
         public ActionResult Create()
         {

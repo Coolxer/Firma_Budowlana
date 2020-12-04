@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(zgloszenia.ToList());
         }
 
-        // GET: Notifications/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            zgloszenia zgloszenia = db.zgloszenia.Find(id);
-            if (zgloszenia == null)
-            {
-                return HttpNotFound();
-            }
-            return View(zgloszenia);
-        }
-
         // GET: Notifications/Create
         public ActionResult Create()
         {

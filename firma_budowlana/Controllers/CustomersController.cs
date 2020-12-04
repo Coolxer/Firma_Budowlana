@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(klienci.ToList());
         }
 
-        // GET: Customers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            klienci klienci = db.klienci.Find(id);
-            if (klienci == null)
-            {
-                return HttpNotFound();
-            }
-            return View(klienci);
-        }
-
         // GET: Customers/Create
         public ActionResult Create()
         {

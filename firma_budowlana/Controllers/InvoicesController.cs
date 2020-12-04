@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(faktury.ToList());
         }
 
-        // GET: Invoices/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            faktury faktury = db.faktury.Find(id);
-            if (faktury == null)
-            {
-                return HttpNotFound();
-            }
-            return View(faktury);
-        }
-
         // GET: Invoices/Create
         public ActionResult Create()
         {

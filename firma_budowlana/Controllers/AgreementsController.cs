@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(umowy.ToList());
         }
 
-        // GET: Agreements/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            umowy umowy = db.umowy.Find(id);
-            if (umowy == null)
-            {
-                return HttpNotFound();
-            }
-            return View(umowy);
-        }
-
         // GET: Agreements/Create
         public ActionResult Create()
         {

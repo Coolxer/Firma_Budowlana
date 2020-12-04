@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(dane_personalne.ToList());
         }
 
-        // GET: PersonalData/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            dane_personalne dane_personalne = db.dane_personalne.Find(id);
-            if (dane_personalne == null)
-            {
-                return HttpNotFound();
-            }
-            return View(dane_personalne);
-        }
-
         // GET: PersonalData/Create
         public ActionResult Create()
         {

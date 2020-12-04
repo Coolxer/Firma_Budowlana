@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(zlecenia.ToList());
         }
 
-        // GET: Tasks/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            zlecenia zlecenia = db.zlecenia.Find(id);
-            if (zlecenia == null)
-            {
-                return HttpNotFound();
-            }
-            return View(zlecenia);
-        }
-
         // GET: Tasks/Create
         public ActionResult Create()
         {

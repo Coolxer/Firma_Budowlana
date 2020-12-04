@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(pracownicy.ToList());
         }
 
-        // GET: Workers/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            pracownicy pracownicy = db.pracownicy.Find(id);
-            if (pracownicy == null)
-            {
-                return HttpNotFound();
-            }
-            return View(pracownicy);
-        }
-
         // GET: Workers/Create
         public ActionResult Create()
         {

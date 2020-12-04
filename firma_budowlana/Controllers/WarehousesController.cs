@@ -20,21 +20,6 @@ namespace firma_budowlana.Controllers
             return View(db.magazyny.ToList());
         }
 
-        // GET: Warehouses/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            magazyny magazyny = db.magazyny.Find(id);
-            if (magazyny == null)
-            {
-                return HttpNotFound();
-            }
-            return View(magazyny);
-        }
-
         // GET: Warehouses/Create
         public ActionResult Create()
         {

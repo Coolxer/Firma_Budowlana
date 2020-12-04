@@ -21,21 +21,6 @@ namespace firma_budowlana.Controllers
             return View(materialy.ToList());
         }
 
-        // GET: Materials/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            materialy materialy = db.materialy.Find(id);
-            if (materialy == null)
-            {
-                return HttpNotFound();
-            }
-            return View(materialy);
-        }
-
         // GET: Materials/Create
         public ActionResult Create()
         {
