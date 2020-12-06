@@ -403,10 +403,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <Content Include="Views\PersonalData\Create.cshtml" />
-    <Content Include="Views\PersonalData\Delete.cshtml" />
-    <Content Include="Views\PersonalData\Edit.cshtml" />
-    <Content Include="Views\PersonalData\Index.cshtml" />
     <Content Include="Views\Home\Tables.cshtml" />
     <Content Include="Views\Agreements\Create.cshtml" />
     <Content Include="Views\Agreements\Delete.cshtml" />

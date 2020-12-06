@@ -67,11 +67,13 @@ namespace firma_budowlana.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nazwa_firmy,nip")] klienci klienci)
+        public ActionResult Edit([Bind(Include = "id,nazwa_firmy,nip,dane_personalne")] klienci klienci)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(klienci).State = EntityState.Modified;
+                db.Entry(klienci.dane_personalne).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
