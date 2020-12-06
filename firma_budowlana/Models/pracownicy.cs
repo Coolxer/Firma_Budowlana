@@ -11,12 +11,19 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class pracownicy
     {
+        [Required]
         public int id { get; set; }
+
+        [Required]
         public int grupa_robocza { get; set; }
         public Nullable<int> obslugiwana_maszyna { get; set; }
+
+        [Required]
+        [Range(999, 99999, ErrorMessage = "Podaj wartoœæ z zakresu <999, 9999>")]
         public double wynagrodzenie { get; set; }
     
         public virtual dane_personalne dane_personalne { get; set; }

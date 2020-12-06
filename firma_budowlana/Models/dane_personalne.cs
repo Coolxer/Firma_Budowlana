@@ -11,14 +11,31 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class dane_personalne
     {
+        [Required]
         public int id { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "Imie mo¿e mieæ maksymalnie 50 znaków")]
         public string imie { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "Nazwisko mo¿e mieæ maksymalnie 50 znaków")]
         public string nazwisko { get; set; }
+
+        [Required]
+        [RegularExpression("^[0-9]{11}$", ErrorMessage = "Pesel musi mieæ 11 cyfr")]
         public string pesel { get; set; }
+
+        [Required]
+        [RegularExpression("^[0-9]{3}-[0-9]{3}-[0-9]{3}$", ErrorMessage = "Numer podaj w formacie 123-456-789")]
         public string nr_telefonu { get; set; }
+
+        [Required]
+        [RegularExpression(".{1,}@[^.]{1,}", ErrorMessage = "Podaj poprawny email")]
         public string email { get; set; }
     
         public virtual kierownicy kierownicy { get; set; }

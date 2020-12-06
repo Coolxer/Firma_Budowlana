@@ -11,7 +11,8 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class klienci
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,9 +20,14 @@ namespace firma_budowlana.Models
         {
             this.zgloszenia = new HashSet<zgloszenia>();
         }
-    
+
+        [Required]
         public int id { get; set; }
+
+        [StringLength(50, ErrorMessage = "Nazwa mo¿e mieæ maksymalnie 50 znaków")]
         public string nazwa_firmy { get; set; }
+
+        [RegularExpression("^[0-9]{10}$", ErrorMessage = "NIP musi mieæ 11 cyfr")]
         public string nip { get; set; }
     
         public virtual dane_personalne dane_personalne { get; set; }

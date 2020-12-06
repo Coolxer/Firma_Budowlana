@@ -11,14 +11,26 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class faktury
     {
+        [Required]
         public int id { get; set; }
+
+        [Required]
         public int nr_umowy { get; set; }
+
+        [Required]
         public string rodzaj_platnosci { get; set; }
+
+        [Required]
         public System.DateTime termin_platnosci { get; set; }
+
+        [Required]
         public System.DateTime data_wystawienia { get; set; }
+
+        [Required]
         public double wartosc { get; set; }
     
         public virtual umowy umowy { get; set; }

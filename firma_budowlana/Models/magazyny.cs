@@ -11,7 +11,8 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class magazyny
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,10 +20,20 @@ namespace firma_budowlana.Models
         {
             this.materialy = new HashSet<materialy>();
         }
-    
+
+        [Required]
         public int id { get; set; }
+
+        [Required]
+        [StringLength(30, ErrorMessage = "Nazwa mo¿e mieæ maksymalnie 30 znaków")]
         public string nazwa { get; set; }
+
+        [Required]
+        [StringLength(50, ErrorMessage = "Adres mo¿e mieæ maksymalnie 50 znaków")]
         public string adres { get; set; }
+
+        [Required]
+        [Range(0, 100, ErrorMessage = "Stan wype³nienia to liczba z zakresu <0, 100>")]
         public int stan_wypelnienia { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
