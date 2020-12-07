@@ -24,7 +24,8 @@ namespace firma_budowlana.Controllers
         // GET: WorkingGroups/Create
         public ActionResult Create()
         {
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id");
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.grupy_robocze.Include(g => g.kierownicy));
+
             return View();
         }
 
@@ -42,7 +43,7 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id", grupy_robocze.kierownik);
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", grupy_robocze.kierownik);
             return View(grupy_robocze);
         }
 
@@ -58,7 +59,10 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id", grupy_robocze.kierownik);
+
+            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta).ToList(), "id", "nazwa");
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", grupy_robocze.kierownik);
+
             return View(grupy_robocze);
         }
 

@@ -35,9 +35,17 @@ namespace firma_budowlana.Models
         public string nr_telefonu { get; set; }
 
         [Required]
-        [RegularExpression(".{1,}@[^.]{1,}", ErrorMessage = "Podaj poprawny email")]
+        [RegularExpression(".{1,}@.{1,}", ErrorMessage = "Podaj poprawny email")]
         public string email { get; set; }
-    
+
+        public string fullName
+        {
+            get
+            {
+                return String.Format("{0} {1}", imie, nazwisko);
+            }
+        }
+
         public virtual kierownicy kierownicy { get; set; }
         public virtual klienci klienci { get; set; }
         public virtual pracownicy pracownicy { get; set; }

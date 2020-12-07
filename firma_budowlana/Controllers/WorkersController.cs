@@ -14,6 +14,8 @@ namespace firma_budowlana.Controllers
     {
         private Entities db = new Entities();
 
+        private int lastMachine;
+
         // GET: Workers
         public ActionResult Index()
         {
@@ -26,7 +28,7 @@ namespace firma_budowlana.Controllers
         {
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie");
             ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja");
-            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny, "id", "nazwa");
+            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta).ToList(), "id", "nazwa");
             return View();
         }
 
@@ -40,13 +42,21 @@ namespace firma_budowlana.Controllers
             if (ModelState.IsValid)
             {
                 db.pracownicy.Add(pracownicy);
+
+                if (pracownicy.obslugiwana_maszyna.ToString() != "BRAK MASZYNY")
+                {
+                    db.maszyny.Find(pracownicy.obslugiwana_maszyna).zajeta = true;
+                    lastMachine = pracownicy.obslugiwana_maszyna.Value;
+                }
+
+                db.Entry(pracownicy.maszyny).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", pracownicy.id);
-            ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja", pracownicy.grupa_robocza);
-            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny, "id", "nazwa", pracownicy.obslugiwana_maszyna);
+            ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja");
+            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta).ToList(), "id", "nazwa");
             return View(pracownicy);
         }
 
@@ -62,9 +72,30 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", pracownicy.id);
             ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja", pracownicy.grupa_robocza);
-            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny, "id", "nazwa", pracownicy.obslugiwana_maszyna);
+
+            lastMachine = pracownicy.obslugiwana_maszyna == null ? 0 : (int)pracownicy.obslugiwana_maszyna;
+
+            ViewBag.obslugiwana_maszyna = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = "0",
+                    Text = "BRAK MASZYNY",
+                    Selected = lastMachine == 0 ? true : false
+                }
+
+            }.Concat(db.maszyny.Where(m => m.sprawna && !m.zajeta).Select(x => new SelectListItem()
+            {
+                Value = x.id.ToString(),
+                Text = x.nazwa
+
+            }));
+
+            //ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta), "id", "nazwa");
+
             return View(pracownicy);
         }
 
@@ -77,10 +108,21 @@ namespace firma_budowlana.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(pracownicy).State = EntityState.Modified;
-                db.Entry(pracownicy.dane_personalne).State = EntityState.Modified;
+                var machine = pracownicy.obslugiwana_maszyna == null ? lastMachine : pracownicy.obslugiwana_maszyna;
 
+                if (machine == 0)
+                    db.maszyny.Find(lastMachine).zajeta = false;
+                else
+                {
+                   // lastMachine = pracownicy.obslugiwana_maszyna.Value;
+                    db.maszyny.Find(pracownicy.obslugiwana_maszyna).zajeta = true;
+                }
+
+                db.Entry(pracownicy).State = EntityState.Modified;
+                db.Entry(pracownicy.maszyny).State = EntityState.Modified;
+                db.Entry(pracownicy.dane_personalne).State = EntityState.Modified;
                 db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", pracownicy.id);
