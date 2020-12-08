@@ -22,11 +22,11 @@ namespace firma_budowlana.Models
         [StringLength(30, ErrorMessage = "Nazwa mo¿e mieæ maksymalnie 30 znaków")]
         public string nazwa { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole iloœæ jest wymagane")]
         [Range(0.0001, Double.MaxValue, ErrorMessage = "Iloœæ musi byæ wiêksza od zera")]
         public double ilosc { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole wartoœæ jest wymagane")]
         [Range(0.0001, Double.MaxValue, ErrorMessage = "Wartoœæ musi byæ wiêksza od zera")]
         public double wartosc { get; set; }
 

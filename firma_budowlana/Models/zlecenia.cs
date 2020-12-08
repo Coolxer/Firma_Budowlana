@@ -39,7 +39,7 @@ namespace firma_budowlana.Models
         [Range(0, 100, ErrorMessage = "Postêp musi byæ w zakresie <0, 100>")]
         public int postep { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole szacunkowy koszt jest wymagane")]
         public double szacunkowy_koszt { get; set; }
 
         [Required]

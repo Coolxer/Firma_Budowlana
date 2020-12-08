@@ -32,7 +32,7 @@ namespace firma_budowlana.Models
         [StringLength(50, ErrorMessage = "Adres mo¿e mieæ maksymalnie 50 znaków")]
         public string adres { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole stan wype³nienia jest wymagane")]
         [Range(0, 100, ErrorMessage = "Stan wype³nienia to liczba z zakresu <0, 100>")]
         public int stan_wypelnienia { get; set; }
     

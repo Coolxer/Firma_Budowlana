@@ -19,18 +19,18 @@ namespace firma_budowlana.Models
         public int id { get; set; }
 
         [Required]
-        [RegularExpression("^[A-Za-z]{3,50}$", ErrorMessage = "Imie musi zawieraÊ same litery. Minumum 3, maksimum 50")]
+        [RegularExpression("^[Aa•πBbCc∆ÊDdEe ÍFfGgHhIiJjKkLl£≥MmNn—ÒOo”ÛPpRrSsåúTtUuWwYyZzèüØø]{3,50}", ErrorMessage = "Imie musi zawieraÊ same litery. Miniumum 3, maksimum 50")]
         public string imie { get; set; }
 
         [Required]
-        [RegularExpression("^[A-Za-z]{3,50}$", ErrorMessage = "Nazwisko musi zawieraÊ same litery. Minumum 3, maksimum 50")]
+        [RegularExpression("^[Aa•πBbCc∆ÊDdEe ÍFfGgHhIiJjKkLl£≥MmNn—ÒOo”ÛPpRrSsåúTtUuWwYyZzèüØø]{3,50}", ErrorMessage = "Imie musi zawieraÊ same litery. Miniumum 3, maksimum 50")]
         public string nazwisko { get; set; }
 
         [Required]
         [RegularExpression("^[0-9]{11}$", ErrorMessage = "Pesel musi mieÊ 11 cyfr")]
         public string pesel { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole telefon jest wymagane")]
         [RegularExpression("^[0-9]{3}-[0-9]{3}-[0-9]{3}$", ErrorMessage = "Numer podaj w formacie 123-456-789")]
         public string nr_telefonu { get; set; }
 
@@ -42,7 +42,7 @@ namespace firma_budowlana.Models
         {
             get
             {
-                return String.Format("{0} {1}", imie, nazwisko);
+                return String.Format("{0} {1} {2}", imie, nazwisko, pesel) ;
             }
         }
 

@@ -27,7 +27,7 @@ namespace firma_budowlana.Models
         [StringLength(50, ErrorMessage = "Nazwa mo¿e mieæ maksymalnie 50 znaków")]
         public string nazwa_firmy { get; set; }
 
-        [RegularExpression("^[0-9]{10}$", ErrorMessage = "NIP musi mieæ 11 cyfr")]
+        [RegularExpression("^[0-9]{10}$", ErrorMessage = "NIP musi mieæ 10 cyfr")]
         public string nip { get; set; }
     
         public virtual dane_personalne dane_personalne { get; set; }

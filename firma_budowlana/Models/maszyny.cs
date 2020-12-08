@@ -31,7 +31,7 @@ namespace firma_budowlana.Models
         [Required]
         public bool sprawna { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Pole zajêta jest wymagane")]
         public bool zajeta { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
