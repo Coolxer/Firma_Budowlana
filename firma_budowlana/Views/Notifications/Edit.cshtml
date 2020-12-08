@@ -15,12 +15,10 @@
 <div class="form-horizontal col-xl-4 col-lg-7 col-md-8 col-sm-10 col-12">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group row">
-        @Html.LabelFor(model => model.autor_zgloszenia, "autor", htmlAttributes: new
-        {
-        @class = "control-label col-5"
-        })
+        @Html.LabelFor(model => model.autor_zgloszenia, "autor", htmlAttributes:
+         new { @class = "control-label col-5" })
         <div class="col-7">
-            @Html.EditorFor(model => model.autor_zgloszenia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownList("autor_zgloszenia", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.autor_zgloszenia, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -30,14 +28,6 @@
         <div class="col-7">
             @Html.EditorFor(model => model.opis, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.opis, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group row">
-        @Html.LabelFor(model => model.data_utworzenia, "data utworzenia", htmlAttributes: new { @class = "control-label col-5" })
-        <div class="col-7">
-            @Html.EditorFor(model => model.data_utworzenia, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.data_utworzenia, "", new { @class = "text-danger" })
         </div>
     </div>
 

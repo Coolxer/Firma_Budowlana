@@ -24,7 +24,7 @@ namespace firma_budowlana.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id");
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));;
             ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "opis");
             return View();
         }
@@ -43,7 +43,7 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id", zlecenia.kierownik);
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));
             ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "opis", zlecenia.nr_zgloszenia);
             return View(zlecenia);
         }
@@ -60,8 +60,8 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id", zlecenia.kierownik);
-            ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "opis", zlecenia.nr_zgloszenia);
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));
+            ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "id", zlecenia.nr_zgloszenia);
             return View(zlecenia);
         }
 
@@ -78,7 +78,7 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id", zlecenia.kierownik);
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));
             ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "opis", zlecenia.nr_zgloszenia);
             return View(zlecenia);
         }

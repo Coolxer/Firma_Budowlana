@@ -45,7 +45,7 @@
         @Html.LabelFor(model => model.zarezerwowany_dla, "nr zlecenia", htmlAttributes:
         new { @class = "control-label col-5" })
         <div class="col-7">
-            @Html.Drop("zarezerwowany_dla", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("zarezerwowany_dla", null, htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.zarezerwowany_dla, "", new { @class = "text-danger" })
         </div>
     </div>
