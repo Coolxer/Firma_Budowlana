@@ -24,8 +24,9 @@ namespace firma_budowlana.Controllers
         // GET: Materials/Create
         public ActionResult Create()
         {
-            ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa");
-            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "etap");
+            ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", db.materialy.Include(m => m.magazyny));
+            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "id", db.materialy.Include(m => m.zlecenia));
+
             return View();
         }
 
@@ -60,8 +61,9 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", materialy.dostepny_w);
-            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "etap", materialy.zarezerwowany_dla);
+            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "id", materialy.zarezerwowany_dla);
             return View(materialy);
         }
 

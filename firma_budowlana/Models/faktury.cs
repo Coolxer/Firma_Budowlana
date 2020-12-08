@@ -27,10 +27,10 @@ namespace firma_budowlana.Models
         [Required]
         public System.DateTime termin_platnosci { get; set; }
 
-        [Required]
         public System.DateTime data_wystawienia { get; set; }
 
-        [Required]
+        //[Required]
+        //[Range(1, Double.MaxValue, ErrorMessage = "Wartoœæ powinna byæ wiêksza ni¿ 1")]
         public double wartosc { get; set; }
     
         public virtual umowy umowy { get; set; }

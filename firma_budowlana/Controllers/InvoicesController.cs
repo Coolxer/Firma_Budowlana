@@ -24,7 +24,7 @@ namespace firma_budowlana.Controllers
         // GET: Invoices/Create
         public ActionResult Create()
         {
-            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "etap");
+            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "id");
             return View();
         }
 
@@ -33,7 +33,7 @@ namespace firma_budowlana.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,nr_umowy,typ,rodzaj_platnosci,termin_platnosci,data_wystawienia")] faktury faktury)
+        public ActionResult Create([Bind(Include = "id,nr_umowy,rodzaj_platnosci,wartosc,termin_platnosci,data_wystawienia")] faktury faktury)
         {
             if (ModelState.IsValid)
             {
@@ -42,7 +42,7 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "etap", faktury.nr_umowy);
+            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "id", faktury.nr_umowy);
             return View(faktury);
         }
 
@@ -58,7 +58,8 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "etap", faktury.nr_umowy);
+            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "id", faktury.nr_umowy);
+
             return View(faktury);
         }
 
@@ -67,7 +68,7 @@ namespace firma_budowlana.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nr_umowy,typ,rodzaj_platnosci,termin_platnosci,data_wystawienia")] faktury faktury)
+        public ActionResult Edit([Bind(Include = "id,nr_umowy,rodzaj_platnosci,wartosc,termin_platnosci,data_wystawienia")] faktury faktury)
         {
             if (ModelState.IsValid)
             {
@@ -76,6 +77,7 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "etap", faktury.nr_umowy);
+
             return View(faktury);
         }
 
