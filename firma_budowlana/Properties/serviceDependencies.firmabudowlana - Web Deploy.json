@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/firma-budowlanadbserver/databases/firma_budowlana_db",
+      "type": "mssql.azure",
+      "connectionId": "firma_budowlana_connection_string",
+      "secretStore": "AzureAppSettings"
+    }
+  }
+}

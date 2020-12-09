@@ -25,7 +25,7 @@ namespace firma_budowlana.Controllers
         public ActionResult Create()
         {
             ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));;
-            ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "opis");
+            ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "id");
             return View();
         }
 

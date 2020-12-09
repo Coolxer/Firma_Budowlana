@@ -16,12 +16,6 @@ namespace firma_budowlana.Controllers
 
         private int lastMachine;
 
-        private int getMachine(string nazwa)
-        {
-            return 0;
-            //return db.maszyny.Where(m => m.nazwa == nazwa).FirstOrDefault().id;
-        }
-
         // GET: Workers
         public ActionResult Index()
         {

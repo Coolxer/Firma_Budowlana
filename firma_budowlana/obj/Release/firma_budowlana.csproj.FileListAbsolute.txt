@@ -81,3 +81,7 @@ E:\firma_budowlana\firma_budowlana\obj\Release\firma_budowlana.csproj.CoreCompil
 E:\firma_budowlana\firma_budowlana\obj\Release\firma_budowlana.csproj.CopyComplete
 E:\firma_budowlana\firma_budowlana\obj\Release\firma_budowlana.dll
 E:\firma_budowlana\firma_budowlana\obj\Release\firma_budowlana.pdb
+E:\firma_budowlana\firma_budowlana\bin\Microsoft.Configuration.ConfigurationBuilders.Base.dll
+E:\firma_budowlana\firma_budowlana\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.dll
+E:\firma_budowlana\firma_budowlana\bin\Microsoft.Configuration.ConfigurationBuilders.Base.xml
+E:\firma_budowlana\firma_budowlana\bin\Microsoft.Configuration.ConfigurationBuilders.UserSecrets.xml

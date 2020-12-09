@@ -24,8 +24,20 @@ namespace firma_budowlana.Controllers
         // GET: Materials/Create
         public ActionResult Create()
         {
-            ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", db.materialy.Include(m => m.magazyny));
-            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "id", db.materialy.Include(m => m.zlecenia));
+            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "id", db.materialy.Include(z => z.zlecenia));
+            ViewBag.dostepny_w = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = "0",
+                    Text = "NIEDOSTEPNY",
+                }
+
+            }.Concat(db.magazyny.Select(x => new SelectListItem()
+            {
+                Value = x.id.ToString(),
+                Text = x.nazwa,
+            }));
 
             return View();
         }
@@ -39,6 +51,7 @@ namespace firma_budowlana.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (materialy.dostepny_w == 0) materialy.dostepny_w = null;
                 db.materialy.Add(materialy);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -62,8 +75,26 @@ namespace firma_budowlana.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", materialy.dostepny_w);
+            //ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", materialy.dostepny_w);
             ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "id", materialy.zarezerwowany_dla);
+
+            ViewBag.dostepny_w = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = "0",
+                    Text = "NIEDOSTEPNY",
+                    Selected = materialy.dostepny_w == 0 ? true : false
+                }
+
+            }.Concat(db.magazyny.Select(x => new SelectListItem()
+            {
+                Value = x.id.ToString(),
+                Text = x.nazwa,
+                Selected = x.id == materialy.dostepny_w
+            }));
+
+
             return View(materialy);
         }
 
@@ -76,6 +107,7 @@ namespace firma_budowlana.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (materialy.dostepny_w == 0) materialy.dostepny_w = null;
                 db.Entry(materialy).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
