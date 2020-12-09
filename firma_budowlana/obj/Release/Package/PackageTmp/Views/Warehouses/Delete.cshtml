@@ -1,0 +1,70 @@
+﻿@model firma_budowlana.Models.magazyny
+
+<div>
+    <div class="row">
+        <h2 class="col-12 table-header">Usuwanie magazynu</h2>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+    <div class="row">
+        <h6 class="col-12 table-header" style="color: red">UWAGA: Jeśli w magazynie są umieszczone materiały, to najpierw należy je stamtąd usunąć. W przeciwnym wypadku system zwróci błąd.</h6>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nazwa)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.adres)
+                    </th>
+                    <th>
+                        stan wypełnienia [%]
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.adres)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.stan_wypelnienia)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+
+    <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć ten magazyn?</h4>
+
+    <div class="col-5 operation-question">
+        <div class="row operation-answer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
+
+                <a class="col-4 btn btn-primary btn-lg" href="~/Warehouses/Index">Nie</a>
+            }
+        </div>
+    </div>
+</div>
+

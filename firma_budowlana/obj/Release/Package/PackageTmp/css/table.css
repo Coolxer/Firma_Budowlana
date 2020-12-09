@@ -1,0 +1,77 @@
+﻿.table-header {
+    text-align: center;
+    margin: 0;
+}
+
+.table-name {
+    color: #0099ff;
+}
+
+.table-line {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+th {
+    color: #0099ff;
+}
+
+tr, td {
+    color: white;
+}
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: #0099ff;
+    cursor: pointer;
+    color: white;
+}
+
+th, td {
+    text-align: center;
+}
+
+.index {
+    color: #0099ff;
+}
+
+.table-operation {
+    background-color: #0099ff;
+    color: white;
+    padding: 0;
+
+    position: relative;
+}
+
+.table-operation a {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+
+    color: white;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.control-label {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.optional-label {
+    color: #8c8c8c;
+}
+
+.optional-control {
+    background-color: #8c8c8c;
+    border-color: #8c8c8c;
+}

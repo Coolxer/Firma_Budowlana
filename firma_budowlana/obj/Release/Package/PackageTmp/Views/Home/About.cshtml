@@ -1,0 +1,42 @@
+﻿<div class="row about-box">
+    <div class="col about-content">
+        <h1 class="about-header">O FIRMIE</h1>
+        <hr class="my-4 about-line">
+        <div class="about-info">
+            <p>Firma Budowlana powstała w 2020 roku. Zapewniamy usługi wysokiej jakości. Mamy wyszkolonych pracowników i materiały najwyższej jakości.</p>
+            <p>Nasi klienci bardzo chwalą sobie świadczone przez nas usługi i polecają nas znajomym!</p>
+        </div>
+    </div>
+    <div class="col-12">
+        <div class="row about-stats">
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 about-stat">
+                <i class="fas fa-users about-icon"></i>
+                <span class="about-value">
+                    @ViewBag.amounts[0]
+                </span>
+                klientów
+            </div>
+            <div class=" col-xl-3 col-lg-3 col-md-3 col-sm-12 about-stat">
+                <i class="fas fa-tasks about-icon"></i>
+                <span class="about-value">
+                    @ViewBag.amounts[1]
+                </span>
+                zleceń
+            </div>
+            <div class=" col-xl-3 col-lg-3 col-md-3 col-sm-12 about-stat">
+                <i class="fas fa-cogs about-icon"></i>
+                <span class="about-value">
+                    @ViewBag.amounts[2]
+                </span>
+                maszyn
+            </div>
+            <div class=" col-xl-3 col-lg-3 col-md-3 col-sm-12 about-stat">
+                <i class="fas fa-user-cog about-icon"></i>
+                <span class="about-value">
+                    @ViewBag.amounts[3]
+                </span>
+                pracowników
+            </div>
+        </div>
+    </div>
+</div>

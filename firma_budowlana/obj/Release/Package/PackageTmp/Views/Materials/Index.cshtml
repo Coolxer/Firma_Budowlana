@@ -1,0 +1,81 @@
+﻿@model IEnumerable<firma_budowlana.Models.materialy>
+
+
+    <div class="row">
+        <h2 class="col-12 table-header">Tabela : <span class="table-name">materiały</span></h2>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        nr
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nazwa)
+                    </th>
+                    <th>
+                        ilość
+                    </th>
+                    <th>
+                        wartość [zł]
+                    </th>
+                    <th>
+                        nr zlecenia
+                    </th>
+                    <th>
+                        magazyn
+                    </th>
+                    <th class="table-operation">
+                        edytuj
+                    </th>
+                    <th class="table-operation">
+                        usuń
+                    </th>
+                </tr>
+            </thead>
+            @{
+            int row = 0; }
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td class="index"> @(row += 1)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nazwa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ilosc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.wartosc)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.zarezerwowany_dla)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.magazyny.nazwa)
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Materials/Edit/@item.id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Materials/Delete/@item.id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Materials/Create">Dodaj materiał</a>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>

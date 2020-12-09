@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="dane_personalne">
+      <EntityTypeMapping TypeName="Model.dane_personalne">
+        <MappingFragment StoreEntitySet="dane_personalne">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="imie" ColumnName="imie" />
+          <ScalarProperty Name="nazwisko" ColumnName="nazwisko" />
+          <ScalarProperty Name="pesel" ColumnName="pesel" />
+          <ScalarProperty Name="nr_telefonu" ColumnName="nr_telefonu" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="faktury">
+      <EntityTypeMapping TypeName="Model.faktury">
+        <MappingFragment StoreEntitySet="faktury">
+          <ScalarProperty Name="wartosc" ColumnName="wartosc" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nr_umowy" ColumnName="nr_umowy" />
+          <ScalarProperty Name="rodzaj_platnosci" ColumnName="rodzaj_platnosci" />
+          <ScalarProperty Name="termin_platnosci" ColumnName="termin_platnosci" />
+          <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="grupy_robocze">
+      <EntityTypeMapping TypeName="Model.grupy_robocze">
+        <MappingFragment StoreEntitySet="grupy_robocze">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="kierownik" ColumnName="kierownik" />
+          <ScalarProperty Name="specjalizacja" ColumnName="specjalizacja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kierownicy">
+      <EntityTypeMapping TypeName="Model.kierownicy">
+        <MappingFragment StoreEntitySet="kierownicy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="wynagrodzenie" ColumnName="wynagrodzenie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="klienci">
+      <EntityTypeMapping TypeName="Model.klienci">
+        <MappingFragment StoreEntitySet="klienci">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nazwa_firmy" ColumnName="nazwa_firmy" />
+          <ScalarProperty Name="nip" ColumnName="nip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="magazyny">
+      <EntityTypeMapping TypeName="Model.magazyny">
+        <MappingFragment StoreEntitySet="magazyny">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="adres" ColumnName="adres" />
+          <ScalarProperty Name="stan_wypelnienia" ColumnName="stan_wypelnienia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="maszyny">
+      <EntityTypeMapping TypeName="Model.maszyny">
+        <MappingFragment StoreEntitySet="maszyny">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="sprawna" ColumnName="sprawna" />
+          <ScalarProperty Name="zajeta" ColumnName="zajeta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="materialy">
+      <EntityTypeMapping TypeName="Model.materialy">
+        <MappingFragment StoreEntitySet="materialy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nazwa" ColumnName="nazwa" />
+          <ScalarProperty Name="ilosc" ColumnName="ilosc" />
+          <ScalarProperty Name="wartosc" ColumnName="wartosc" />
+          <ScalarProperty Name="zarezerwowany_dla" ColumnName="zarezerwowany_dla" />
+          <ScalarProperty Name="dostepny_w" ColumnName="dostepny_w" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pracownicy">
+      <EntityTypeMapping TypeName="Model.pracownicy">
+        <MappingFragment StoreEntitySet="pracownicy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="grupa_robocza" ColumnName="grupa_robocza" />
+          <ScalarProperty Name="obslugiwana_maszyna" ColumnName="obslugiwana_maszyna" />
+          <ScalarProperty Name="wynagrodzenie" ColumnName="wynagrodzenie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="umowy">
+      <EntityTypeMapping TypeName="Model.umowy">
+        <MappingFragment StoreEntitySet="umowy">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nr_zlecenia" ColumnName="nr_zlecenia" />
+          <ScalarProperty Name="typ" ColumnName="typ" />
+          <ScalarProperty Name="data_wystawienia" ColumnName="data_wystawienia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zgloszenia">
+      <EntityTypeMapping TypeName="Model.zgloszenia">
+        <MappingFragment StoreEntitySet="zgloszenia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="autor_zgloszenia" ColumnName="autor_zgloszenia" />
+          <ScalarProperty Name="opis" ColumnName="opis" />
+          <ScalarProperty Name="data_utworzenia" ColumnName="data_utworzenia" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="zlecenia">
+      <EntityTypeMapping TypeName="Model.zlecenia">
+        <MappingFragment StoreEntitySet="zlecenia">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nr_zgloszenia" ColumnName="nr_zgloszenia" />
+          <ScalarProperty Name="kierownik" ColumnName="kierownik" />
+          <ScalarProperty Name="etap" ColumnName="etap" />
+          <ScalarProperty Name="postep" ColumnName="postep" />
+          <ScalarProperty Name="szacunkowy_koszt" ColumnName="szacunkowy_koszt" />
+          <ScalarProperty Name="termin" ColumnName="termin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

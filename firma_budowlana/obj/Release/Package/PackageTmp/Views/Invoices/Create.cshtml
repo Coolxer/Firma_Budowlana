@@ -1,0 +1,88 @@
+﻿@model firma_budowlana.Models.faktury
+
+<div class="row">
+    <h2 class="col-12 table-header">Dodawanie faktury</h2>
+</div>
+
+<div class="row">
+    <hr class="my-2 col-8 table-line" />
+</div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal col-xl-4 col-lg-7 col-md-8 col-sm-10 col-12">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group row">
+        @Html.LabelFor(model => model.nr_umowy, "nr umowy", htmlAttributes:
+        new { @class = "control-label col-5" })
+        <div class="col-7">
+            @Html.DropDownList("nr_umowy", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.nr_umowy, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.rodzaj_platnosci, "rodzaj płatności", htmlAttributes:
+        new { @class = "control-label col-5" })
+        <div class="col-7">
+            @Html.DropDownListFor(model => model.rodzaj_platnosci, new List<SelectListItem> { new SelectListItem() {Text = "gotówka", Value = "gotówka"},
+            new SelectListItem() {Text = "przelew", Value = "przelew"},
+            new SelectListItem() {Text = "karta kredytowa", Value = "karta kredytowa"},
+            new SelectListItem() {Text = "czek", Value = "czek"}}, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.rodzaj_platnosci, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.wartosc, "wartość", htmlAttributes: new { @class = "control-label col-5" })
+        <div class="col-7">
+            @Html.EditorFor(model => model.wartosc, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.wartosc, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(model => model.termin_platnosci, "termin płatności", htmlAttributes: new
+        {
+            @class =
+        "control-label col-5"
+        })
+
+        <div class="col-7">
+            @Html.EditorFor(model => model.termin_platnosci, "{0:dd/mm/yy}", new { htmlAttributes = new { @class = "form-control", @id = "datepicker", @type = "datetime", @Value = @DateTime.Now.ToShortDateString() } })
+            @Html.ValidationMessageFor(model => model.termin_platnosci, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @Html.HiddenFor(model => model.data_wystawienia, new { Value = System.DateTime.Now.ToShortDateString() })
+
+    <div class="form-group">
+        <div class="col-12 operation-question">
+            <div class="row operation-answer">
+                @using (Html.BeginForm())
+                {
+                    <input type="submit" value="Dodaj" class="col-4 btn btn-primary btn-lg" />
+
+                    <a class="col-4 btn btn-primary btn-lg" href="~/Invoices/Index">Anuluj</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#datepicker").removeAttr("data-val-date");
+            $("#datepicker").datepicker({ dateFormat: 'dd/mm/yy' });
+        });
+    </script>
+}

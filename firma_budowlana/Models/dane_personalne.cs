@@ -23,7 +23,7 @@ namespace firma_budowlana.Models
         public string imie { get; set; }
 
         [Required]
-        [RegularExpression("^[AaĄąBbCcĆćDdEeĘęFfGgHhIiJjKkLlŁłMmNnŃńOoÓóPpRrSsŚśTtUuWwYyZzŹźŻż]{3,50}", ErrorMessage = "Imie musi zawierać same litery. Miniumum 3, maksimum 50")]
+        [RegularExpression("^[AaĄąBbCcĆćDdEeĘęFfGgHhIiJjKkLlŁłMmNnŃńOoÓóPpRrSsŚśTtUuWwYyZzŹźŻż]{3,50}", ErrorMessage = "Nazwisko musi zawierać same litery. Miniumum 3, maksimum 50")]
         public string nazwisko { get; set; }
 
         [Required]

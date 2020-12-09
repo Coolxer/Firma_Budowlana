@@ -1,0 +1,40 @@
+﻿.contact-box {
+  margin-top: 50px;
+}
+
+.contact-header {
+  display: flex;
+  justify-content: center;
+}
+
+.questions {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  padding: 10px;
+}
+
+.contact-infos {
+  display: flex;
+  align-items: center;
+}
+
+.contact-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  border: 2px solid #0099ff;
+}
+
+.contact-info-header {
+  font-size: 1.5rem;
+  color: #0099ff;
+}
+
+.contact-info-value {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  text-align: right;
+}

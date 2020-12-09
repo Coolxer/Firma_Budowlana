@@ -1,0 +1,59 @@
+﻿@model firma_budowlana.Models.magazyny
+
+<div class="row">
+    <h2 class="col-12 table-header">Dodawanie magazynu</h2>
+</div>
+
+<div class="row">
+    <hr class="my-2 col-8 table-line" />
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal col-xl-4 col-lg-7 col-md-8 col-sm-10 col-12">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group row">
+            @Html.LabelFor(model => model.nazwa, htmlAttributes: new
+            {
+                @class = "control-label col-5"
+            })
+            <div class="col-7">
+                @Html.EditorFor(model => model.nazwa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nazwa, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.adres, htmlAttributes: new { @class = "control-label col-5" })
+            <div class="col-7">
+                @Html.EditorFor(model => model.adres, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.adres, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group row">
+            @Html.LabelFor(model => model.stan_wypelnienia, "stan wypełnienia",  htmlAttributes: new { @class = "control-label col-5" })
+            <div class="col-7">
+                @Html.EditorFor(model => model.stan_wypelnienia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.stan_wypelnienia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12 operation-question">
+                <div class="row operation-answer">
+                    @using (Html.BeginForm())
+                    {
+                        <input type="submit" value="Dodaj" class="col-4 btn btn-primary btn-lg" />
+
+                        <a class="col-4 btn btn-primary btn-lg" href="~/Warehouses/Index">Anuluj</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+}@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

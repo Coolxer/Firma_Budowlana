@@ -1,0 +1,92 @@
+﻿@model firma_budowlana.Models.pracownicy
+
+<div>
+    <div class="row">
+        <h2 class="col-12 table-header">Usuwanie pracownika</h2>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.imie)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.nazwisko)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.pesel)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.nr_telefonu)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.dane_personalne.email)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.grupy_robocze.specjalizacja)
+                    </th>
+                    <th>
+                        obsługiwana maszyna
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.wynagrodzenie) [zł]
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.imie)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.pesel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.nr_telefonu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.dane_personalne.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.grupy_robocze.specjalizacja)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.obslugiwana_maszyna)
+                    </td>
+                    <th>
+                        @Html.DisplayFor(model => model.wynagrodzenie)
+                    </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+
+    <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć tego pracownika?</h4>
+
+    <div class="col-5 operation-question">
+        <div class="row operation-answer">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
+
+                <a class="col-4 btn btn-primary btn-lg" href="~/Workers/Index">Nie</a>
+            }
+        </div>
+    </div>
+</div>
+

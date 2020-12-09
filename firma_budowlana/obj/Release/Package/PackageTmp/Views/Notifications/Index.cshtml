@@ -1,0 +1,70 @@
+﻿@model IEnumerable<firma_budowlana.Models.zgloszenia>
+
+    <div class="row">
+        <h2 class="col-12 table-header">Tabela : <span class="table-name">zgłoszenia</span></h2>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        nr
+                    </th>
+                    <th>
+                        autor
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.opis)
+                    </th>
+                    <th>
+                        data utworzenia
+                    </th>
+                    <th class="table-operation">
+                        edytuj
+                    </th>
+                    <th class="table-operation">
+                        usuń
+                    </th>
+                </tr>
+            </thead>
+            @{
+            int row = 0;
+            }
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td class="index"> @(row += 1)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.klienci.dane_personalne.imie)
+                        @Html.DisplayFor(modelItem => item.klienci.dane_personalne.nazwisko)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.opis)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.data_utworzenia).ToString("dd/MM/yyyy")
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Notifications/Edit/@item.id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Notifications/Delete/@item.id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Notifications/Create">Dodaj zgłoszenie</a>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>

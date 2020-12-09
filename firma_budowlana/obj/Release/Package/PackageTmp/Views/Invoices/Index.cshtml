@@ -1,0 +1,81 @@
+﻿@model IEnumerable<firma_budowlana.Models.faktury>
+
+
+    <div class="row">
+        <h2 class="col-12 table-header">Tabela : <span class="table-name">faktury</span></h2>
+    </div>
+
+    <div class="row">
+        <hr class="my-2 col-8 table-line">
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-dark table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        nr
+                    </th>
+                    <th>
+                        nr umowy
+                    </th>
+                    <th>
+                        rodzaj płatnosci
+                    </th>
+                    <th>
+                        wartość [zł]
+                    </th>
+                    <th>
+                        termin płatnosci
+                    </th>
+                    <th>
+                        data wystawienia
+                    </th>
+                    <th class="table-operation">
+                        edytuj
+                    </th>
+                    <th class="table-operation">
+                        usuń
+                    </th>
+                </tr>
+            </thead>
+            @{
+            int row = 0; }
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td class="index"> @(row += 1)</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nr_umowy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.rodzaj_platnosci)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.wartosc)
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.termin_platnosci).ToString("dd/MM/yyyy")
+                    </td>
+                    <td>
+                        @Convert.ToDateTime(item.data_wystawienia).ToString("dd/MM/yyyy")
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Invoices/Edit/@item.id">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </td>
+                    <td class="table-operation">
+                        <a href="~/Invoices/Delete/@item.id">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Invoices/Create">Wystaw fakturę</a>
+    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>

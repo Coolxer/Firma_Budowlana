@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="description" content="Firma Budowlana">
+    <meta name="author" content="Łukasz Miłoś, Bartłomiej Watras">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Firma Budowlana</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/css/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto&display=swap">
+
+    <!--/ fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <i class="far fa-building brand-icon"></i>
+            <a class=" navbar-brand" href="~/Home">Firma Budowlana</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="~/Home">Strona główna <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/About">O firmie</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/Contact">Kontakt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="~/Home/Tables">Tabele</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="row body-content">
+            <div class="col-10 ">
+                @RenderBody()
+            </div>
+        </div>
+
+        <div class="row">
+            <footer class="col-12 py-3">
+                <p>&copy; @DateTime.Now.Year - Łukasz Miłoś, Bartłomiej Watras</p>
+            </footer>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>
