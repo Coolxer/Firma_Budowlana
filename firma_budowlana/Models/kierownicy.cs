@@ -11,8 +11,7 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class kierownicy
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +20,8 @@ namespace firma_budowlana.Models
             this.grupy_robocze = new HashSet<grupy_robocze>();
             this.zlecenia = new HashSet<zlecenia>();
         }
-
-        [Required]
+    
         public int id { get; set; }
-
-        [Required]
-        [Range(999, 99999, ErrorMessage = "Podaj wartoœæ z zakresu <999, 9999>")]
         public double wynagrodzenie { get; set; }
     
         public virtual dane_personalne dane_personalne { get; set; }

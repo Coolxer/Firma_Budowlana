@@ -16,6 +16,12 @@ namespace firma_budowlana.Controllers
 
         private int lastMachine;
 
+        private int getMachine(string nazwa)
+        {
+            return 0;
+            //return db.maszyny.Where(m => m.nazwa == nazwa).FirstOrDefault().id;
+        }
+
         // GET: Workers
         public ActionResult Index()
         {
@@ -28,7 +34,22 @@ namespace firma_budowlana.Controllers
         {
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie");
             ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja");
-            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta).ToList(), "id", "nazwa");
+
+            ViewBag.obslugiwana_maszyna = new List<SelectListItem>()
+            {
+                new SelectListItem()
+                {
+                    Value = "0",
+                    Text = "BRAK MASZYNY",
+                }
+
+            }.Concat(db.maszyny.Select(x => new SelectListItem()
+            {
+                Value = x.id.ToString(),
+                Text = x.nazwa,
+                Disabled = !x.sprawna || x.zajeta
+            }));
+
             return View();
         }
 
@@ -43,13 +64,14 @@ namespace firma_budowlana.Controllers
             {
                 db.pracownicy.Add(pracownicy);
 
-                if (pracownicy.obslugiwana_maszyna.ToString() != "BRAK MASZYNY")
+                var machine = pracownicy.obslugiwana_maszyna != 0 ? db.maszyny.Find(pracownicy.obslugiwana_maszyna) : null;
+
+                if (machine != null)
                 {
-                    db.maszyny.Find(pracownicy.obslugiwana_maszyna).zajeta = true;
-                    lastMachine = pracownicy.obslugiwana_maszyna.Value;
+                    machine.zajeta = true;
+                    db.Entry(machine).State = EntityState.Modified;
                 }
 
-                db.Entry(pracownicy.maszyny).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -76,7 +98,7 @@ namespace firma_budowlana.Controllers
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", pracownicy.id);
             ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja", pracownicy.grupa_robocza);
 
-            lastMachine = pracownicy.obslugiwana_maszyna == null ? 0 : (int)pracownicy.obslugiwana_maszyna;
+            TempData["lastMachine"] = pracownicy.obslugiwana_maszyna;
 
             ViewBag.obslugiwana_maszyna = new List<SelectListItem>()
             {
@@ -84,14 +106,15 @@ namespace firma_budowlana.Controllers
                 {
                     Value = "0",
                     Text = "BRAK MASZYNY",
-                    Selected = lastMachine == 0 ? true : false
+                    Selected = pracownicy.obslugiwana_maszyna == 0 ? true : false
                 }
 
-            }.Concat(db.maszyny.Where(m => m.sprawna && !m.zajeta).Select(x => new SelectListItem()
+            }.Concat(db.maszyny.Select(x => new SelectListItem()
             {
                 Value = x.id.ToString(),
-                Text = x.nazwa
-
+                Text = x.nazwa,
+                Selected = x.id == pracownicy.obslugiwana_maszyna,
+                Disabled = !x.sprawna || (x.zajeta && x.id != pracownicy.obslugiwana_maszyna)
             }));
 
             //ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta), "id", "nazwa");
@@ -108,18 +131,23 @@ namespace firma_budowlana.Controllers
         {
             if (ModelState.IsValid)
             {
-                var machine = pracownicy.obslugiwana_maszyna == null ? lastMachine : pracownicy.obslugiwana_maszyna;
+                var machine = TempData["lastMachine"] != null ? db.maszyny.Find(TempData["lastMachine"]) : null;
 
-                if (machine == 0)
-                    db.maszyny.Find(lastMachine).zajeta = false;
-                else
+                if (pracownicy.obslugiwana_maszyna == 0 && machine != null)
                 {
-                   // lastMachine = pracownicy.obslugiwana_maszyna.Value;
-                    db.maszyny.Find(pracownicy.obslugiwana_maszyna).zajeta = true;
+                    machine.zajeta = false;
+                    pracownicy.obslugiwana_maszyna = null;
                 }
+                else if (pracownicy.obslugiwana_maszyna != 0)
+                    db.maszyny.Find(pracownicy.obslugiwana_maszyna).zajeta = true;
+                else
+                    pracownicy.obslugiwana_maszyna = null;
 
                 db.Entry(pracownicy).State = EntityState.Modified;
-                db.Entry(pracownicy.maszyny).State = EntityState.Modified;
+
+                if(machine != null)
+                    db.Entry(machine).State = EntityState.Modified;
+
                 db.Entry(pracownicy.dane_personalne).State = EntityState.Modified;
                 db.SaveChanges();
 

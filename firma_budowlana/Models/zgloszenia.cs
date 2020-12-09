@@ -11,8 +11,7 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class zgloszenia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,18 +19,10 @@ namespace firma_budowlana.Models
         {
             this.zlecenia = new HashSet<zlecenia>();
         }
-
-        [Required]
+    
         public int id { get; set; }
-
-        [Required]
         public int autor_zgloszenia { get; set; }
-
-        [Required]
-        [StringLength(250, ErrorMessage = "Opis mo¿e mieæ maksymalnie 250 znaków")]
         public string opis { get; set; }
-
-        [Required]
         public System.DateTime data_utworzenia { get; set; }
     
         public virtual klienci klienci { get; set; }

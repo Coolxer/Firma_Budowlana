@@ -15,3 +15,8 @@ form {
     justify-content: space-evenly;
     width: 100%;
 }
+
+select option:disabled {
+    background-color: #8c8c8c;
+    color: white;
+}

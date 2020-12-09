@@ -11,43 +11,23 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class dane_personalne
     {
-        [Required]
         public int id { get; set; }
-
-        [Required]
-        [RegularExpression("^[Aa•πBbCc∆ÊDdEe ÍFfGgHhIiJjKkLl£≥MmNn—ÒOo”ÛPpRrSsåúTtUuWwYyZzèüØø]{3,50}", ErrorMessage = "Imie musi zawieraÊ same litery. Miniumum 3, maksimum 50")]
         public string imie { get; set; }
-
-        [Required]
-        [RegularExpression("^[Aa•πBbCc∆ÊDdEe ÍFfGgHhIiJjKkLl£≥MmNn—ÒOo”ÛPpRrSsåúTtUuWwYyZzèüØø]{3,50}", ErrorMessage = "Imie musi zawieraÊ same litery. Miniumum 3, maksimum 50")]
         public string nazwisko { get; set; }
-
-        [Required]
-        [RegularExpression("^[0-9]{11}$", ErrorMessage = "Pesel musi mieÊ 11 cyfr")]
         public string pesel { get; set; }
-
-        [Required(ErrorMessage = "Pole telefon jest wymagane")]
-        [RegularExpression("^[0-9]{3}-[0-9]{3}-[0-9]{3}$", ErrorMessage = "Numer podaj w formacie 123-456-789")]
         public string nr_telefonu { get; set; }
-
-        [Required]
-        [RegularExpression(".{1,}@.{1,}", ErrorMessage = "Podaj poprawny email")]
         public string email { get; set; }
-
-        public string fullName
-        {
-            get
-            {
-                return String.Format("{0} {1} {2}", imie, nazwisko, pesel) ;
-            }
-        }
-
+    
         public virtual kierownicy kierownicy { get; set; }
         public virtual klienci klienci { get; set; }
         public virtual pracownicy pracownicy { get; set; }
+
+        public string fullName
+        {
+            get { return this.imie + " " + this.nazwisko + " " + this.pesel; }
+        }
     }
 }

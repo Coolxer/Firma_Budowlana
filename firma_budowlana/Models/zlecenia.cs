@@ -11,8 +11,7 @@ namespace firma_budowlana.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class zlecenia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,27 +21,12 @@ namespace firma_budowlana.Models
             this.umowy = new HashSet<umowy>();
         }
     
-        [Required]
         public int id { get; set; }
-
-        [Required]
         public int nr_zgloszenia { get; set; }
-
-        [Required]
         public int kierownik { get; set; }
-
-        [Required]
-        [StringLength(50, ErrorMessage = "Etap mo¿e mieæ maksymalnie 250 znaków")]
         public string etap { get; set; }
-
-        [Required]
-        [Range(0, 100, ErrorMessage = "Postêp musi byæ w zakresie <0, 100>")]
         public int postep { get; set; }
-
-        [Required(ErrorMessage = "Pole szacunkowy koszt jest wymagane")]
         public double szacunkowy_koszt { get; set; }
-
-        [Required]
         public System.DateTime termin { get; set; }
     
         public virtual kierownicy kierownicy { get; set; }
