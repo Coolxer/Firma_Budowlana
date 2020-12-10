@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAbpGcpQGjvk67A73yojNlfwAAAAACAAAAAAAQZgAAAAEAACAAAAC1H8jjC+dXGxHgxoG2MfQdf9JRtTs5fGmQTOsYNKUFGgAAAAAOgAAAAAIAACAAAAB2uETtk3gRrlSpUMzPU/vAFEfHyVMhGi/wngH3FQmJZ4AAAAARwtSIx2W3QqwLZEFBM3S5rYBtESMK+XzO5T3hF4LX1d+DuiLjyNAB/F9Zm4JAdTUQTd1aS1J8juN3I560JDXyx47FJDoALXIV2yr0rdiqeNZotidsWJKP6oYg5B7ZE4PSsYiY1Ry0cctza3/smlV4CmACdcPUFWsrhmWu1JgToUAAAAAbyNEQpdeZhpTgcR4nxcr6xcji4TqoJ3J5xcLZSX2MqkQWbKn5AN4aEpDyCVDUlRfJp7joVr6CoOzUoyf+dbb4</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <AzureDBConnectionStrings Include="Data Source=tcp:firma-budowlanadbserver.database.windows.net,1433;Initial Catalog=firma_budowlana_db;User Id=FiRm4@firma-budowlanadbserver;Password=Bu(oWl4na" />
+    <AzureDBConnectionStrings Include="Data Source=tcp:studyprz.database.windows.net,1433;Initial Catalog=my_db;User Id=firma@studyprz;Password=Budowlana2" />
+  </ItemGroup>
+</Project>

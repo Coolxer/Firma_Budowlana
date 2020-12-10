@@ -14,8 +14,6 @@ namespace firma_budowlana.Controllers
     {
         private Entities db = new Entities();
 
-        private int lastMachine;
-
         // GET: Workers
         public ActionResult Index()
         {

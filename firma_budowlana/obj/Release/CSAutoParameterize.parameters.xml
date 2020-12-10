@@ -3,4 +3,7 @@
   <parameter name="firma_budowlana_connection_string-Web.config Connection String" description="firma_budowlana_connection_string Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:firma-budowlanadbserver.database.windows.net,1433;Initial Catalog=firma_budowlana_db;Persist Security Info=False;User ID=FiRm4;Password=Bu(oWl4na;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" tags="SqlConnectionString">
     <parameterEntry kind="XmlFile" scope="E:\\firma_budowlana\\firma_budowlana\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='firma_budowlana_connection_string']/@connectionString" />
   </parameter>
+  <parameter name="Entities-Web.config Connection String" description="Entities Connection String used in web.config by the application to access the database." defaultValue="metadata=res://*/Models.Model.csdl|res://*/Models.Model.ssdl|res://*/Models.Model.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=studyprz.database.windows.net;initial catalog=my_db;user id=Firma;password=Budowlana2;MultipleActiveResultSets=True;App=EntityFramework&quot;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="E:\\firma_budowlana\\firma_budowlana\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Entities']/@connectionString" />
+  </parameter>
 </parameters>
