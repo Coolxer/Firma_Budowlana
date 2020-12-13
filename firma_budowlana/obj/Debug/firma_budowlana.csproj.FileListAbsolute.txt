@@ -84,3 +84,4 @@ E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csproj.CoreCompileI
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csproj.CopyComplete
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.dll
 E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.pdb
+E:\firma_budowlana\firma_budowlana\obj\Debug\firma_budowlana.csprojAssemblyReference.cache
