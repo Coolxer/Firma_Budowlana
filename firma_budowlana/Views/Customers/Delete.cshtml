@@ -1,5 +1,27 @@
 ﻿@model firma_budowlana.Models.klienci
 
+@if (TempData["error"] != null)
+{
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Wystąpił błąd podczas próby usunięcia klienta</h5>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Rekord, który próbujesz usunąć jest użyty w innej tabeli.</li>
+                        <li>Jeśli klient złożył już zgłoszenie, to najpierw należy je usunąć.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary btn-lg btn-block" href="~/Customers/Index">OK</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else {
 <div>
     <div class="row">
         <h2 class="col-12 table-header">Usuwanie Klienta</h2>
@@ -76,7 +98,6 @@
         <hr class="my-2 col-8 table-line">
     </div>
 
-
     <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć tego klienta?</h4>
 
     <div class="col-5 operation-question">
@@ -91,4 +112,7 @@
         </div>
     </div>
 </div>
+} 
+
+
 

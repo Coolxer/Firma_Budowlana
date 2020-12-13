@@ -1,70 +1,93 @@
 ﻿@model firma_budowlana.Models.maszyny
 
-<div>
-    <div class="row">
-        <h2 class="col-12 table-header">Usuwanie maszyny</h2>
-    </div>
-
-    <div class="row">
-        <hr class="my-2 col-8 table-line">
-    </div>
-
-    <div class="row">
-        <h6 class="col-12 table-header" style="color: red">UWAGA: Jeśli maszyna jest używana przez pracownika, to musi on ją najpierw zwrócić. W przeciwnym wypadku system zwróci błąd.</h6>
-    </div>
-
-    <div class="row">
-        <hr class="my-2 col-8 table-line">
-    </div>
-
-    <div class="table-responsive">
-        <table class="table table-striped table-dark table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nazwa)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.sprawna)
-                    </th>
-                    <th>
-                        zajęta
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        @Html.DisplayFor(model => model.nazwa)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.sprawna)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(model => model.zajeta)
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="row">
-        <hr class="my-2 col-8 table-line">
-    </div>
-
-
-    <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć tą maszynę?</h4>
-
-    <div class="col-5 operation-question">
-        <div class="row operation-answer">
-            @using (Html.BeginForm())
-            {
-                @Html.AntiForgeryToken()
-                <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
-
-                <a class="col-4 btn btn-primary btn-lg" href="~/Machines/Index">Nie</a>
-            }
+@if (TempData["error"] != null)
+{
+    <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Wystąpił błąd podczas próby usunięcia maszyny</h5>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li>Rekord, który próbujesz usunąć jest użyty w innej tabeli.</li>
+                        <li>Jeśli maszyna jest używana przez pracownika, to musi on ją najpierw zwrócić.</li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary btn-lg btn-block" href="~/Machines/Index">OK</a>
+                </div>
+            </div>
         </div>
     </div>
-</div>
+}
+else
+{
+    <div>
+        <div class="row">
+            <h2 class="col-12 table-header">Usuwanie maszyny</h2>
+        </div>
 
+        <div class="row">
+            <hr class="my-2 col-8 table-line">
+        </div>
+
+        <div class="row">
+            <h6 class="col-12 table-header" style="color: red">UWAGA: Jeśli maszyna jest używana przez pracownika, to musi on ją najpierw zwrócić. W przeciwnym wypadku system zwróci błąd.</h6>
+        </div>
+
+        <div class="row">
+            <hr class="my-2 col-8 table-line">
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-dark table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nazwa)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.sprawna)
+                        </th>
+                        <th>
+                            zajęta
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.nazwa)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.sprawna)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.zajeta)
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <hr class="my-2 col-8 table-line">
+        </div>
+
+
+        <h4 class="table-header">Czy jesteś pewien, że chcesz usunąć tą maszynę?</h4>
+
+        <div class="col-5 operation-question">
+            <div class="row operation-answer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Tak" class="col-4 btn btn-primary btn-lg" />
+
+                    <a class="col-4 btn btn-primary btn-lg" href="~/Machines/Index">Nie</a>
+                }
+            </div>
+        </div>
+    </div>
+}

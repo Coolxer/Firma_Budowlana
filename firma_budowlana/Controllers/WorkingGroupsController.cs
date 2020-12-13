@@ -104,8 +104,18 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             grupy_robocze grupy_robocze = db.grupy_robocze.Find(id);
-            db.grupy_robocze.Remove(grupy_robocze);
-            db.SaveChanges();
+            
+            try
+            {
+                db.grupy_robocze.Remove(grupy_robocze);
+                db.SaveChanges();
+            }
+            catch (DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+
             return RedirectToAction("Index");
         }
 

@@ -1,0 +1,28 @@
+﻿.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    border: 3px solid red;
+    box-shadow: 1px 1px 2px 2px #cc2900;
+    padding: 20px;
+}
+
+.close {
+    color: white;
+}
+
+.close:hover {
+    color: red;
+}
+
+.modal-title {
+    color: red;
+}
+
+.modal-body {
+    color: white;
+}

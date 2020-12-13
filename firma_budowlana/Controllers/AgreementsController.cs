@@ -100,8 +100,18 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             umowy umowy = db.umowy.Find(id);
-            db.umowy.Remove(umowy);
-            db.SaveChanges();
+            
+            try
+            {
+                db.umowy.Remove(umowy);
+                db.SaveChanges();
+            }
+            catch (DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+
             return RedirectToAction("Index");
         }
 

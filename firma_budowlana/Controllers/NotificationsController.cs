@@ -100,8 +100,18 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             zgloszenia zgloszenia = db.zgloszenia.Find(id);
-            db.zgloszenia.Remove(zgloszenia);
-            db.SaveChanges();
+            
+            try
+            {
+                db.zgloszenia.Remove(zgloszenia);
+                db.SaveChanges();
+            }
+            catch (DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+
             return RedirectToAction("Index");
         }
 

@@ -216,6 +216,7 @@
     <Content Include="css\about.css" />
     <Content Include="css\cards.css" />
     <Content Include="css\contact.css" />
+    <Content Include="css\modal.css" />
     <Content Include="css\operation.css" />
     <Content Include="css\home.css" />
     <Content Include="css\table.css" />

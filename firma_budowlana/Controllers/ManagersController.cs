@@ -102,9 +102,19 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             kierownicy kierownicy = db.kierownicy.Find(id);
-            db.kierownicy.Remove(kierownicy);
-            db.dane_personalne.Remove(db.dane_personalne.Find(id));
-            db.SaveChanges();
+
+            try
+            {
+                db.kierownicy.Remove(kierownicy);
+                db.dane_personalne.Remove(db.dane_personalne.Find(id));
+                db.SaveChanges();
+            }
+            catch (DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+    
             return RedirectToAction("Index");
         }
 

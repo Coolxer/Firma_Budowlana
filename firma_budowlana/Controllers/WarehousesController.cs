@@ -95,8 +95,18 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             magazyny magazyny = db.magazyny.Find(id);
-            db.magazyny.Remove(magazyny);
-            db.SaveChanges();
+            
+            try
+            {
+                db.magazyny.Remove(magazyny);
+                db.SaveChanges();
+            }
+            catch (DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+
             return RedirectToAction("Index");
         }
 

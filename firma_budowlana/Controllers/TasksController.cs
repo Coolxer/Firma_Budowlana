@@ -104,8 +104,18 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             zlecenia zlecenia = db.zlecenia.Find(id);
-            db.zlecenia.Remove(zlecenia);
-            db.SaveChanges();
+            
+            try
+            {
+                db.zlecenia.Remove(zlecenia);
+                db.SaveChanges();
+            }
+            catch (DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+
             return RedirectToAction("Index");
         }
 

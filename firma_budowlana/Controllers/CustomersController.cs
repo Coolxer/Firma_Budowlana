@@ -102,9 +102,19 @@ namespace firma_budowlana.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             klienci klienci = db.klienci.Find(id);
-            db.klienci.Remove(klienci);
-            db.dane_personalne.Remove(db.dane_personalne.Find(id));
-            db.SaveChanges();
+
+            try
+            {
+                db.klienci.Remove(klienci);
+                db.dane_personalne.Remove(db.dane_personalne.Find(id));
+                db.SaveChanges();
+            }
+            catch(DataException error)
+            {
+                TempData["error"] = true;
+                return RedirectToAction("Delete");
+            }
+           
             return RedirectToAction("Index");
         }
 
