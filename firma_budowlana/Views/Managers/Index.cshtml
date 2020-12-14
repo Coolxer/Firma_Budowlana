@@ -1,53 +1,53 @@
 ﻿@model IEnumerable<firma_budowlana.Models.kierownicy>
 
 
-    <div class="row">
-        <h2 class="col-12 table-header">Tabela : <span class="table-name">kierownicy</span></h2>
-    </div>
+<div class="row">
+    <h2 class="col-12 table-header">Tabela : <span class="table-name">kierownicy</span></h2>
+</div>
 
-    <div class="row">
-        <hr class="my-2 col-8 table-line">
-    </div>
+<div class="row">
+    <hr class="my-2 col-8 table-line">
+</div>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-dark table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        nr
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dane_personalne.imie)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dane_personalne.nazwisko)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dane_personalne.pesel)
-                    </th>
-                    <th>
-                        telefon
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.dane_personalne.email)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.wynagrodzenie) [zł]
-                    </th>
-                    <th class="table-operation">
-                        edytuj
-                    </th>
-                    <th class="table-operation">
-                        usuń
-                    </th>
-                </tr>
-            </thead>
-            @{
+<div class="table-responsive">
+    <table class="table table-striped table-dark table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    nr
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dane_personalne.imie)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dane_personalne.nazwisko)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dane_personalne.pesel)
+                </th>
+                <th>
+                    telefon
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.dane_personalne.email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.wynagrodzenie) [zł]
+                </th>
+                <th class="table-operation">
+                    edytuj
+                </th>
+                <th class="table-operation">
+                    usuń
+                </th>
+            </tr>
+        </thead>
+        @{
             int row = 0; }
 
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td class="index"> @(row += 1)</td>
                     <td>
@@ -79,9 +79,12 @@
                         </a>
                     </td>
                 </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <a class="btn btn-primary btn-lg btn-block" href="~/Managers/Create">Dodaj kierownika</a>
-    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>
+            }
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-primary btn-lg btn-block" href="~/Managers/Create">Dodaj kierownika</a>
+<a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
