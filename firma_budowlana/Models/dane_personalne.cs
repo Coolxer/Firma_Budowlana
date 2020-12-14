@@ -28,7 +28,7 @@ namespace firma_budowlana.Models
 
         [Required]
         [RegularExpression("^[0-9]{11}$", ErrorMessage = "Pesel musi mieć dokładnie 11 cyfr")]
-        [System.Web.Mvc.Remote("exists", "PersonalData", HttpMethod = "POST", ErrorMessage = "Osoba o takim samym numerze PESEL jest już zapisana")]
+        [System.Web.Mvc.Remote("Exists", "PersonalData", HttpMethod = "POST", ErrorMessage = "Osoba o takim samym numerze PESEL jest już zapisana")]
         public string pesel { get; set; }
 
         [Required(ErrorMessage = "Pole telefon jest wymagane")]

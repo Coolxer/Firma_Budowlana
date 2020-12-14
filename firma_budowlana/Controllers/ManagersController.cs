@@ -58,6 +58,9 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
+
+            TempData["pesel"] = kierownicy.dane_personalne.pesel;
+
             ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", kierownicy.id);
             return View(kierownicy);
         }

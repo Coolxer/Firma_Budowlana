@@ -119,6 +119,8 @@ namespace firma_budowlana.Controllers
                 Disabled = !x.sprawna || (x.zajeta && x.id != pracownicy.obslugiwana_maszyna)
             }));
 
+            TempData["pesel"] = pracownicy.dane_personalne.pesel;
+
             //ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta), "id", "nazwa");
 
             return View(pracownicy);

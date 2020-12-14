@@ -22,11 +22,17 @@ namespace firma_budowlana.Controllers
         }
 
         [HttpPost]
-        public JsonResult exists([Bind(Include = "id,imie,nazwisko,pesel,nr_telefonu,email")] dane_personalne dane_personalne)
+        public JsonResult Exists([Bind(Include = "id,imie,nazwisko,pesel,nr_telefonu,email")] dane_personalne dane_personalne)
         {
-            var exists = this.db.dane_personalne.Where(d => d.pesel == dane_personalne.pesel).FirstOrDefault();
-
-            return Json(exists == null);
+            if (TempData["pesel"] != null)
+            {
+                if (dane_personalne.pesel == TempData["pesel"].ToString())
+                    return Json(true);
+                else
+                    return Json(this.db.dane_personalne.Where(d => d.pesel == dane_personalne.pesel).FirstOrDefault() == null);
+            }
+            else
+                return Json(this.db.dane_personalne.Where(d => d.pesel == dane_personalne.pesel).FirstOrDefault() == null);
         }
 
         // GET: PersonalData/Create
