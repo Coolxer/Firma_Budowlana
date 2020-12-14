@@ -21,6 +21,14 @@ namespace firma_budowlana.Controllers
             return View(dane_personalne.ToList());
         }
 
+        [HttpPost]
+        public JsonResult exists([Bind(Include = "id,imie,nazwisko,pesel,nr_telefonu,email")] dane_personalne dane_personalne)
+        {
+            var exists = this.db.dane_personalne.Where(d => d.pesel == dane_personalne.pesel).FirstOrDefault();
+
+            return Json(exists == null);
+        }
+
         // GET: PersonalData/Create
         public ActionResult Create()
         {
