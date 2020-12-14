@@ -30,4 +30,20 @@ body {
     margin: 50px 0 50px 0;
 }
 
+.form-check {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-check-input {
+    width: 30px;
+    height: 30px;
+}
+
+td .check-box {
+    width: 20px;
+    height: 20px;
+}
 

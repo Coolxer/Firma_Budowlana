@@ -14,13 +14,21 @@ namespace firma_budowlana.Controllers
     {
         private Entities db = new Entities();
 
-        private int lastMachine;
-
         // GET: Workers
-        public ActionResult Index()
+        public ActionResult Index(bool checkbox = false)
         {
-            var pracownicy = db.pracownicy.Include(p => p.dane_personalne).Include(p => p.grupy_robocze).Include(p => p.maszyny);
-            return View(pracownicy.ToList());
+            TempData["checkbox"] = checkbox;
+
+            if (checkbox)
+            {
+                var pracownicy = db.pracownicy.Include(p => p.dane_personalne).Include(p => p.grupy_robocze).Include(p => p.maszyny).Where(p => p.obslugiwana_maszyna != null);
+                return View(pracownicy.ToList());
+            }
+            else
+            {
+                var pracownicy = db.pracownicy.Include(p => p.dane_personalne).Include(p => p.grupy_robocze).Include(p => p.maszyny);
+                return View(pracownicy.ToList());
+            }
         }
 
         // GET: Workers/Create

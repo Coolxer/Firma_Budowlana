@@ -15,10 +15,20 @@ namespace firma_budowlana.Controllers
         private Entities db = new Entities();
 
         // GET: Customers
-        public ActionResult Index()
+        public ActionResult Index(bool checkbox = false)
         {
-            var klienci = db.klienci.Include(k => k.dane_personalne);
-            return View(klienci.ToList());
+            TempData["checkbox"] = checkbox;
+
+            if(checkbox)
+            {
+                var klienci = db.klienci.Include(k => k.dane_personalne).Where(k => k.nazwa_firmy != null);
+                return View(klienci.ToList());
+            }
+            else
+            {
+                var klienci = db.klienci.Include(k => k.dane_personalne);
+                return View(klienci.ToList());
+            }
         }
 
         // GET: Customers/Create

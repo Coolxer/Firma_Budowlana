@@ -15,10 +15,20 @@ namespace firma_budowlana.Controllers
         private Entities db = new Entities();
 
         // GET: Materials
-        public ActionResult Index()
+        public ActionResult Index(bool checkbox = false)
         {
-            var materialy = db.materialy.Include(m => m.magazyny).Include(m => m.zlecenia);
-            return View(materialy.ToList());
+            TempData["checkbox"] = checkbox;
+
+            if (checkbox)
+            {
+                var materialy = db.materialy.Include(m => m.magazyny).Include(m => m.zlecenia).Where(m => m.dostepny_w != null);
+                return View(materialy.ToList());
+            }
+            else
+            {
+                var materialy = db.materialy.Include(m => m.magazyny).Include(m => m.zlecenia);
+                return View(materialy.ToList());
+            }
         }
 
         // GET: Materials/Create

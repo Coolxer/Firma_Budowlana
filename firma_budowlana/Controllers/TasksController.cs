@@ -15,10 +15,20 @@ namespace firma_budowlana.Controllers
         private Entities db = new Entities();
 
         // GET: Tasks
-        public ActionResult Index()
+        public ActionResult Index(bool checkbox = false)
         {
-            var zlecenia = db.zlecenia.Include(z => z.kierownicy).Include(z => z.zgloszenia);
-            return View(zlecenia.ToList());
+            TempData["checkbox"] = checkbox;
+
+            if (checkbox)
+            {
+                var zlecenia = db.zlecenia.Include(z => z.kierownicy).Include(z => z.zgloszenia).Where(z => z.postep == 100);
+                return View(zlecenia.ToList());
+            }
+            else
+            {
+                var zlecenia = db.zlecenia.Include(z => z.kierownicy).Include(z => z.zgloszenia);
+                return View(zlecenia.ToList());
+            }
         }
 
         // GET: Tasks/Create

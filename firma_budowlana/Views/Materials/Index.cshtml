@@ -1,50 +1,64 @@
 ﻿@model IEnumerable<firma_budowlana.Models.materialy>
 
 
-    <div class="row">
-        <h2 class="col-12 table-header">Tabela : <span class="table-name">materiały</span></h2>
+<div class="row">
+    <div class="col-2">
+        <form id="form" method="post">
+            <div class="form-check row col-12">
+                <input type="checkbox" class="form-check-input col-2" name="checkbox" id="checkbox" checked=@TempData["checkbox"] ? "checked" : null value=@TempData["checkbox"] />
+                <span class="col-12">Tylko przechowywane w magazynie</span>
+            </div>
+        </form>
     </div>
+    <h2 class="col-8 table-header">
+        Tabela : <span class="table-name">
+            materiały @if ((bool)TempData["checkbox"])
+            {<span>(tylko przechowywane w magazynie)</span>}
+        </span>
+    </h2>
+    <div class="col-2"></div>
+</div>
 
-    <div class="row">
-        <hr class="my-2 col-8 table-line">
-    </div>
+<div class="row">
+    <hr class="my-2 col-8 table-line">
+</div>
 
-    <div class="table-responsive">
-        <table class="table table-striped table-dark table-bordered table-hover">
-            <thead>
-                <tr>
-                    <th>
-                        nr
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nazwa)
-                    </th>
-                    <th>
-                        ilość
-                    </th>
-                    <th>
-                        wartość [zł]
-                    </th>
-                    <th>
-                        nr zlecenia
-                    </th>
-                    <th>
-                        magazyn
-                    </th>
-                    <th class="table-operation">
-                        edytuj
-                    </th>
-                    <th class="table-operation">
-                        usuń
-                    </th>
-                </tr>
-            </thead>
-            @{
+<div class="table-responsive">
+    <table class="table table-striped table-dark table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    nr
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nazwa)
+                </th>
+                <th>
+                    ilość
+                </th>
+                <th>
+                    wartość [zł]
+                </th>
+                <th>
+                    nr zlecenia
+                </th>
+                <th>
+                    magazyn
+                </th>
+                <th class="table-operation">
+                    edytuj
+                </th>
+                <th class="table-operation">
+                    usuń
+                </th>
+            </tr>
+        </thead>
+        @{
             int row = 0; }
 
-            <tbody>
-                @foreach (var item in Model)
-                {
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
                     <td class="index"> @(row += 1)</td>
                     <td>
@@ -73,9 +87,30 @@
                         </a>
                     </td>
                 </tr>
-                }
-            </tbody>
-        </table>
-    </div>
-    <a class="btn btn-primary btn-lg btn-block" href="~/Materials/Create">Dodaj materiał</a>
-    <a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>
+            }
+        </tbody>
+    </table>
+</div>
+<a class="btn btn-primary btn-lg btn-block" href="~/Materials/Create">Dodaj materiał</a>
+<a class="btn btn-primary btn-lg btn-block" href="~/Home/Tables">Wróć do listy tabel</a>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $(document).on("click", "[type='checkbox']", function (e) {
+
+            if (this.checked) {
+                $(this).attr("value", "true");
+            } else {
+                $(this).attr("value", "false");
+            }
+
+            $("#form").on("change", "input:checkbox", function () {
+                $("#form").submit();
+            });
+        });
+    </script>
+}

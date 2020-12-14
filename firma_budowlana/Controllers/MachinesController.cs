@@ -15,9 +15,19 @@ namespace firma_budowlana.Controllers
         private Entities db = new Entities();
 
         // GET: Machines
-        public ActionResult Index()
+        public ActionResult Index(bool checkbox = false)
         {
-            return View(db.maszyny.ToList());
+            TempData["checkbox"] = checkbox;
+
+            if (checkbox)
+            {
+                var maszyny = db.maszyny.Where(m => m.sprawna && !m.zajeta);
+                return View(maszyny.ToList());
+            }
+            else
+            {
+                return View(db.maszyny.ToList());
+            }
         }
         
         // GET: Machines/Create
