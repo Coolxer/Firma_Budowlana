@@ -42,7 +42,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", kierownicy.id);
             return View(kierownicy);
         }
 
@@ -80,7 +79,6 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", kierownicy.id);
             return View(kierownicy);
         }
 

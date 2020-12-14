@@ -67,8 +67,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", materialy.dostepny_w);
-            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "etap", materialy.zarezerwowany_dla);
             return View(materialy);
         }
 
@@ -85,7 +83,6 @@ namespace firma_budowlana.Controllers
                 return HttpNotFound();
             }
 
-            //ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", materialy.dostepny_w);
             ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "id", materialy.zarezerwowany_dla);
 
             ViewBag.dostepny_w = new List<SelectListItem>()
@@ -122,8 +119,7 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.dostepny_w = new SelectList(db.magazyny, "id", "nazwa", materialy.dostepny_w);
-            ViewBag.zarezerwowany_dla = new SelectList(db.zlecenia, "id", "etap", materialy.zarezerwowany_dla);
+
             return View(materialy);
         }
 

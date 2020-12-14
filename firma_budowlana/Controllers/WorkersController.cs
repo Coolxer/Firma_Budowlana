@@ -78,9 +78,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", pracownicy.id);
-            ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja");
-            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta).ToList(), "id", "nazwa");
             return View(pracownicy);
         }
 
@@ -121,8 +118,6 @@ namespace firma_budowlana.Controllers
 
             TempData["pesel"] = pracownicy.dane_personalne.pesel;
 
-            //ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny.Where(m => m.sprawna && !m.zajeta), "id", "nazwa");
-
             return View(pracownicy);
         }
 
@@ -157,9 +152,7 @@ namespace firma_budowlana.Controllers
 
                 return RedirectToAction("Index");
             }
-            ViewBag.id = new SelectList(db.dane_personalne, "id", "imie", pracownicy.id);
-            ViewBag.grupa_robocza = new SelectList(db.grupy_robocze, "id", "specjalizacja", pracownicy.grupa_robocza);
-            ViewBag.obslugiwana_maszyna = new SelectList(db.maszyny, "id", "nazwa", pracownicy.obslugiwana_maszyna);
+
             return View(pracownicy);
         }
 

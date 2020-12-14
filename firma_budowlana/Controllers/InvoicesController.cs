@@ -42,7 +42,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "id", faktury.nr_umowy);
             return View(faktury);
         }
 
@@ -76,7 +75,6 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.nr_umowy = new SelectList(db.zlecenia, "id", "etap", faktury.nr_umowy);
 
             return View(faktury);
         }

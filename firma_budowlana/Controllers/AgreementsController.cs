@@ -24,7 +24,7 @@ namespace firma_budowlana.Controllers
         // GET: Agreements/Create
         public ActionResult Create()
         {
-            ViewBag.nr_zlecenia = new SelectList(db.zlecenia, "id", "id");
+            ViewBag.nr_zlecenia = new SelectList(this.db.zlecenia.Select(z => z.id).Except(this.db.umowy.Select(zl => zl.nr_zlecenia).ToList()));
             return View();
         }
 
@@ -42,7 +42,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.nr_zlecenia = new SelectList(db.zlecenia, "id", "id", umowy.nr_zlecenia);
             return View(umowy);
         }
 
@@ -58,7 +57,7 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.nr_zlecenia = new SelectList(db.zlecenia, "id", "id", umowy.nr_zlecenia);
+            ViewBag.nr_zlecenia = new SelectList(this.db.zlecenia.Select(z => z.id).Except(this.db.umowy.Where(z => z.nr_zlecenia != id).Select(z => z.nr_zlecenia)).ToList());
             return View(umowy);
         }
 
@@ -75,7 +74,6 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.nr_zlecenia = new SelectList(db.zlecenia, "id", "id", umowy.nr_zlecenia);
             return View(umowy);
         }
 

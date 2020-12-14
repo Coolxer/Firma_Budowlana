@@ -42,7 +42,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.autor_zgloszenia = new SelectList(db.klienci, "id", "dane_personalne.fullName", db.zgloszenia.Include(g => g.klienci));
             return View(zgloszenia);
         }
 
@@ -75,7 +74,7 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.autor_zgloszenia = new SelectList(db.klienci, "id", "dane_personalne.fullName", db.zgloszenia.Include(g => g.klienci));
+
             return View(zgloszenia);
         }
 

@@ -43,7 +43,6 @@ namespace firma_budowlana.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", grupy_robocze.kierownik);
             return View(grupy_robocze);
         }
 
@@ -79,7 +78,7 @@ namespace firma_budowlana.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "id", grupy_robocze.kierownik);
+
             return View(grupy_robocze);
         }
 

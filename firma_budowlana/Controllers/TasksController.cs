@@ -34,12 +34,9 @@ namespace firma_budowlana.Controllers
         // GET: Tasks/Create
         public ActionResult Create()
         {
-            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));;
-            
-            var indexes = new SelectList(this.db.zgloszenia.Select(z => z.id).Except(this.db.zlecenia.Select(zl => zl.nr_zgloszenia)).ToList());
-
-            ViewBag.nr_zgloszenia = indexes;
-
+            ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));
+            ViewBag.nr_zgloszenia = new SelectList(this.db.zgloszenia.Select(z => z.id).Except(this.db.zlecenia.Select(zl => zl.nr_zgloszenia).ToList()));
+           
             return View();
         }
 
@@ -72,8 +69,10 @@ namespace firma_budowlana.Controllers
             {
                 return HttpNotFound();
             }
+
             ViewBag.kierownik = new SelectList(db.kierownicy, "id", "dane_personalne.fullName", db.zlecenia.Include(g => g.kierownicy));
-            ViewBag.nr_zgloszenia = new SelectList(db.zgloszenia, "id", "id", zlecenia.nr_zgloszenia);
+            ViewBag.nr_zgloszenia = new SelectList(this.db.zgloszenia.Select(z => z.id).Except(this.db.zlecenia.Where(z => z.nr_zgloszenia != id).Select(z => z.nr_zgloszenia)).ToList());
+
             return View(zlecenia);
         }
 
